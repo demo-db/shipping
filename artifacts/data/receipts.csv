@@ -1,0 +1,8 @@
+receipt_id,request_id,message_id,received_at
+receipt-11038,request-11038,message-11038,2018-04-30T09:00:02Z
+receipt-11045,request-11045,message-11045,2018-05-20T09:00:02Z
+receipt-11062,request-11062,message-11062,2018-05-20T09:00:02Z
+receipt-90001,request-90001,message-90001,2018-05-20T09:00:02Z
+receipt-90002,request-90002,message-90002,2018-05-20T09:00:02Z
+receipt-90003,request-90003,message-90003,2018-05-20T09:00:02Z
+receipt-90004,request-90004,wrong-message,2018-05-20T09:00:02Z

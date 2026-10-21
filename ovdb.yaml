@@ -1,0 +1,48 @@
+{
+  "format": "ovdb-manifest/draft-1",
+  "id": "shipping",
+  "title": "Shipping",
+  "description": "Synthetic Northwind companion: request receipts, effective routes, attempts and assignments, including healthy11038, blocked11045 and pending11062.",
+  "homepage": "https://shipping.demodb.dev/",
+  "url": "https://demodb.dev/shipping/",
+  "deployment": {
+    "engine": "openvaultdb-go",
+    "url": "https://cloud.openvaultdb.com/ovdb/db/shipping",
+    "discovery": "https://shipping.demodb.dev/.well-known/openvaultdb"
+  },
+  "model": {
+    "address": "modelspec://github.com/demo-db/shipping/0.1.0",
+    "modelspec": "model/shipping.modelspec.json",
+    "hcl": "model/shipping.modelspec.hcl"
+  },
+  "meaning": {
+    "file": "model/shipping.meaning.yaml",
+    "graph": {
+      "id": "shipping",
+      "address": "meaning://github.com/demo-db/shipping"
+    }
+  },
+  "publisher": {
+    "name": "DemoDB",
+    "url": "https://demodb.dev",
+    "repository": "https://github.com/demo-db/shipping"
+  },
+  "licences": {
+    "data": "CC0-1.0",
+    "model": "CC0-1.0",
+    "meaning": "CC0-1.0"
+  },
+  "recordsets": [
+    "requests",
+    "publications",
+    "receipts",
+    "configurations",
+    "partners",
+    "routes",
+    "attempts",
+    "events",
+    "assignments",
+    "workspace_state"
+  ],
+  "recordset_entities": {}
+}

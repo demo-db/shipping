@@ -1,0 +1,5 @@
+route_id,revision,shipper_id,partner_id,valid_from,valid_until
+ambiguous-a,17,92,united-package,2018-04-01T00:00:00Z,
+ambiguous-b,17,92,united-package,2018-04-01T00:00:00Z,
+disabled,17,93,disabled-partner,2018-04-01T00:00:00Z,
+route-17-2,17,2,united-package,2018-04-01T00:00:00Z,2018-05-19T00:00:00Z

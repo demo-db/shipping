@@ -1,0 +1,2038 @@
+{
+  "contractVersion": 1,
+  "manifest": {
+    "contractVersion": 1,
+    "id": "shipping",
+    "name": "Shipping",
+    "description": "Synthetic Northwind companion: request receipts, effective routes, attempts and assignments, including healthy11038, blocked11045 and pending11062.",
+    "domain": "Synthetic logistics training",
+    "siteHost": "shipping.demodb.dev",
+    "aliases": [],
+    "source": {
+      "repository": "https://github.com/datatug/datatug-demo-project",
+      "revision": "cb841345e88d01229857b2bdb51cc07f4ef4bec7",
+      "path": "demo-project-1/fixtures/shipping/base.sqlite",
+      "license": "CC0-1.0",
+      "licenseFile": "LICENSE",
+      "notes": "Public synthetic training companion to Northwind; no real shipment or partner call is represented.",
+      "databaseSha256": "73f0d871607ee5b24de68b5398c25806f556a3126a31e1865fee79b2881977e0"
+    },
+    "semantics": {},
+    "queries": [
+      {
+        "title": "Blocked request and current routing",
+        "sql": "SELECT * FROM current_routes WHERE order_id = 11045;"
+      }
+    ],
+    "capabilities": {
+      "exports": [
+        "sqlite",
+        "csv",
+        "json",
+        "sql"
+      ],
+      "ovdb": {
+        "available": true,
+        "canonicalUrl": "https://demodb.dev/shipping/",
+        "serverId": "https://demodb.dev/ovdb",
+        "serverDbBaseUrl": "https://demodb.dev/ovdb/db/shipping/",
+        "connection": "https://demodb.dev/ovdb/v1/databases/shipping",
+        "query": true,
+        "readOnly": true,
+        "deploymentVerified": false
+      },
+      "datatug": {
+        "available": false
+      }
+    },
+    "generator": {
+      "publisher": {
+        "name": "DemoDB",
+        "url": "https://demodb.dev",
+        "repository": "https://github.com/demo-db/shipping"
+      },
+      "licences": {
+        "model": "CC0-1.0",
+        "meaning": "CC0-1.0"
+      },
+      "emitModelSpdxLicense": true,
+      "model": {
+        "address": "modelspec://github.com/demo-db/shipping/0.1.0",
+        "moduleId": "shipping",
+        "name": "shipping",
+        "version": "0.1.0"
+      },
+      "meaning": {
+        "id": "shipping",
+        "address": "meaning://github.com/demo-db/shipping",
+        "name": "Shipping",
+        "description": "Synthetic Northwind companion: request receipts, effective routes, attempts and assignments, including healthy11038, blocked11045 and pending11062.",
+        "license": "CC0-1.0",
+        "core": {
+          "address": "meaning://github.com/meaninggraph/core",
+          "revision": "982916d73f0a35ff2558b0062f58aa3ac4f24d97"
+        },
+        "concepts": []
+      },
+      "ovdb": {
+        "query": true,
+        "deployment": {
+          "engine": "openvaultdb-go",
+          "url": "https://cloud.openvaultdb.com/ovdb/db/shipping",
+          "discovery": "https://shipping.demodb.dev/.well-known/openvaultdb"
+        },
+        "recordsets": [
+          "requests",
+          "publications",
+          "receipts",
+          "configurations",
+          "partners",
+          "routes",
+          "attempts",
+          "events",
+          "assignments",
+          "workspace_state"
+        ]
+      }
+    },
+    "dataFile": "data-source/base.sqlite"
+  },
+  "schema": {
+    "contractVersion": 1,
+    "database": {
+      "id": "shipping",
+      "name": "Shipping"
+    },
+    "source": {
+      "repository": "https://github.com/datatug/datatug-demo-project",
+      "revision": "cb841345e88d01229857b2bdb51cc07f4ef4bec7",
+      "path": "demo-project-1/fixtures/shipping/base.sqlite",
+      "license": "CC0-1.0",
+      "licenseFile": "LICENSE",
+      "notes": "Public synthetic training companion to Northwind; no real shipment or partner call is represented.",
+      "databaseSha256": "73f0d871607ee5b24de68b5398c25806f556a3126a31e1865fee79b2881977e0"
+    },
+    "blobEncoding": "base64",
+    "modelingLimitations": [],
+    "tables": [
+      {
+        "name": "assignments",
+        "modelEntity": "assignments",
+        "modelRecordset": null,
+        "kind": "table",
+        "description": "",
+        "columns": [
+          {
+            "name": "assignment_id",
+            "type": "TEXT",
+            "nullable": true,
+            "primaryKey": true,
+            "primaryKeyOrder": 1,
+            "primaryKeyPosition": 1,
+            "defaultValue": null
+          },
+          {
+            "name": "attempt_id",
+            "type": "TEXT",
+            "nullable": false,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "partner_id",
+            "type": "TEXT",
+            "nullable": false,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "accepted_at",
+            "type": "TEXT",
+            "nullable": false,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "deduplication_key",
+            "type": "TEXT",
+            "nullable": false,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          }
+        ],
+        "primaryKey": [
+          {
+            "column": "assignment_id",
+            "position": 1
+          }
+        ],
+        "uniqueKeys": [
+          {
+            "name": "sqlite_autoindex_assignments_2",
+            "origin": "u",
+            "columns": [
+              "deduplication_key"
+            ]
+          }
+        ],
+        "uniqueIndexes": [
+          {
+            "name": "sqlite_autoindex_assignments_1",
+            "origin": "pk",
+            "partial": false,
+            "columns": [
+              {
+                "position": 0,
+                "column": "assignment_id",
+                "expression": false,
+                "descending": false,
+                "collation": "BINARY"
+              }
+            ],
+            "sql": null
+          },
+          {
+            "name": "sqlite_autoindex_assignments_2",
+            "origin": "u",
+            "partial": false,
+            "columns": [
+              {
+                "position": 0,
+                "column": "deduplication_key",
+                "expression": false,
+                "descending": false,
+                "collation": "BINARY"
+              }
+            ],
+            "sql": null
+          }
+        ],
+        "foreignKeys": [
+          {
+            "column": "partner_id",
+            "table": "partners",
+            "referencedColumn": "partner_id",
+            "constraint": 0,
+            "position": 0,
+            "onUpdate": "NO ACTION",
+            "onDelete": "NO ACTION",
+            "match": "NONE"
+          },
+          {
+            "column": "attempt_id",
+            "table": "attempts",
+            "referencedColumn": "attempt_id",
+            "constraint": 1,
+            "position": 0,
+            "onUpdate": "NO ACTION",
+            "onDelete": "NO ACTION",
+            "match": "NONE"
+          }
+        ],
+        "rowCount": 1,
+        "viewSql": null,
+        "tableSql": "CREATE TABLE assignments(assignment_id TEXT PRIMARY KEY,attempt_id TEXT NOT NULL REFERENCES attempts,partner_id TEXT NOT NULL REFERENCES partners,accepted_at TEXT NOT NULL,deduplication_key TEXT UNIQUE NOT NULL)",
+        "rows": [
+          {
+            "assignment_id": "assignment-11038",
+            "attempt_id": "attempt-11038-1",
+            "partner_id": "united-package",
+            "accepted_at": "2018-04-30T09:00:04Z",
+            "deduplication_key": "request-11038:assignment"
+          }
+        ]
+      },
+      {
+        "name": "attempts",
+        "modelEntity": "attempts",
+        "modelRecordset": null,
+        "kind": "table",
+        "description": "",
+        "columns": [
+          {
+            "name": "attempt_id",
+            "type": "TEXT",
+            "nullable": true,
+            "primaryKey": true,
+            "primaryKeyOrder": 1,
+            "primaryKeyPosition": 1,
+            "defaultValue": null
+          },
+          {
+            "name": "request_id",
+            "type": "TEXT",
+            "nullable": false,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "attempt_no",
+            "type": "INTEGER",
+            "nullable": false,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "config_revision",
+            "type": "INTEGER",
+            "nullable": false,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "started_at",
+            "type": "TEXT",
+            "nullable": false,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "state",
+            "type": "TEXT",
+            "nullable": false,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          }
+        ],
+        "primaryKey": [
+          {
+            "column": "attempt_id",
+            "position": 1
+          }
+        ],
+        "uniqueKeys": [
+          {
+            "name": "sqlite_autoindex_attempts_2",
+            "origin": "u",
+            "columns": [
+              "request_id",
+              "attempt_no"
+            ]
+          }
+        ],
+        "uniqueIndexes": [
+          {
+            "name": "sqlite_autoindex_attempts_1",
+            "origin": "pk",
+            "partial": false,
+            "columns": [
+              {
+                "position": 0,
+                "column": "attempt_id",
+                "expression": false,
+                "descending": false,
+                "collation": "BINARY"
+              }
+            ],
+            "sql": null
+          },
+          {
+            "name": "sqlite_autoindex_attempts_2",
+            "origin": "u",
+            "partial": false,
+            "columns": [
+              {
+                "position": 0,
+                "column": "request_id",
+                "expression": false,
+                "descending": false,
+                "collation": "BINARY"
+              },
+              {
+                "position": 1,
+                "column": "attempt_no",
+                "expression": false,
+                "descending": false,
+                "collation": "BINARY"
+              }
+            ],
+            "sql": null
+          }
+        ],
+        "foreignKeys": [
+          {
+            "column": "config_revision",
+            "table": "configurations",
+            "referencedColumn": "revision",
+            "constraint": 0,
+            "position": 0,
+            "onUpdate": "NO ACTION",
+            "onDelete": "NO ACTION",
+            "match": "NONE"
+          },
+          {
+            "column": "request_id",
+            "table": "requests",
+            "referencedColumn": "request_id",
+            "constraint": 1,
+            "position": 0,
+            "onUpdate": "NO ACTION",
+            "onDelete": "NO ACTION",
+            "match": "NONE"
+          }
+        ],
+        "rowCount": 8,
+        "viewSql": null,
+        "tableSql": "CREATE TABLE attempts(attempt_id TEXT PRIMARY KEY,request_id TEXT NOT NULL REFERENCES requests,attempt_no INTEGER NOT NULL,config_revision INTEGER NOT NULL REFERENCES configurations,started_at TEXT NOT NULL,state TEXT NOT NULL,UNIQUE(request_id,attempt_no))",
+        "rows": [
+          {
+            "attempt_id": "attempt-11038-1",
+            "request_id": "request-11038",
+            "attempt_no": 1,
+            "config_revision": 17,
+            "started_at": "2018-04-30T09:00:00Z",
+            "state": "accepted"
+          },
+          {
+            "attempt_id": "attempt-11045-1",
+            "request_id": "request-11045",
+            "attempt_no": 1,
+            "config_revision": 17,
+            "started_at": "2018-05-20T09:00:00Z",
+            "state": "blocked"
+          },
+          {
+            "attempt_id": "attempt-11062-1",
+            "request_id": "request-11062",
+            "attempt_no": 1,
+            "config_revision": 17,
+            "started_at": "2018-05-20T09:00:00Z",
+            "state": "blocked"
+          },
+          {
+            "attempt_id": "attempt-90001-1",
+            "request_id": "request-90001",
+            "attempt_no": 1,
+            "config_revision": 17,
+            "started_at": "2018-05-20T09:00:00Z",
+            "state": "blocked"
+          },
+          {
+            "attempt_id": "attempt-90002-1",
+            "request_id": "request-90002",
+            "attempt_no": 1,
+            "config_revision": 17,
+            "started_at": "2018-05-20T09:00:00Z",
+            "state": "blocked"
+          },
+          {
+            "attempt_id": "attempt-90003-1",
+            "request_id": "request-90003",
+            "attempt_no": 1,
+            "config_revision": 17,
+            "started_at": "2018-05-20T09:00:00Z",
+            "state": "blocked"
+          },
+          {
+            "attempt_id": "attempt-90004-1",
+            "request_id": "request-90004",
+            "attempt_no": 1,
+            "config_revision": 17,
+            "started_at": "2018-05-20T09:00:00Z",
+            "state": "blocked"
+          },
+          {
+            "attempt_id": "attempt-90005-1",
+            "request_id": "request-90005",
+            "attempt_no": 1,
+            "config_revision": 17,
+            "started_at": "2018-05-20T09:00:00Z",
+            "state": "blocked"
+          }
+        ]
+      },
+      {
+        "name": "configurations",
+        "modelEntity": "configurations",
+        "modelRecordset": null,
+        "kind": "table",
+        "description": "",
+        "columns": [
+          {
+            "name": "revision",
+            "type": "INTEGER",
+            "nullable": true,
+            "primaryKey": true,
+            "primaryKeyOrder": 1,
+            "primaryKeyPosition": 1,
+            "defaultValue": null
+          },
+          {
+            "name": "published_at",
+            "type": "TEXT",
+            "nullable": false,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          }
+        ],
+        "primaryKey": [
+          {
+            "column": "revision",
+            "position": 1
+          }
+        ],
+        "uniqueKeys": [],
+        "uniqueIndexes": [],
+        "foreignKeys": [],
+        "rowCount": 1,
+        "viewSql": null,
+        "tableSql": "CREATE TABLE configurations(revision INTEGER PRIMARY KEY,published_at TEXT NOT NULL)",
+        "rows": [
+          {
+            "revision": 17,
+            "published_at": "2018-04-01T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "name": "events",
+        "modelEntity": "events",
+        "modelRecordset": null,
+        "kind": "table",
+        "description": "",
+        "columns": [
+          {
+            "name": "event_id",
+            "type": "TEXT",
+            "nullable": true,
+            "primaryKey": true,
+            "primaryKeyOrder": 1,
+            "primaryKeyPosition": 1,
+            "defaultValue": null
+          },
+          {
+            "name": "attempt_id",
+            "type": "TEXT",
+            "nullable": false,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "sequence",
+            "type": "INTEGER",
+            "nullable": false,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "kind",
+            "type": "TEXT",
+            "nullable": false,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "occurred_at",
+            "type": "TEXT",
+            "nullable": false,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "clock_domain",
+            "type": "TEXT",
+            "nullable": false,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "precision_ms",
+            "type": "INTEGER",
+            "nullable": false,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "artifact",
+            "type": "TEXT",
+            "nullable": false,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "byte_start",
+            "type": "INTEGER",
+            "nullable": false,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "byte_end",
+            "type": "INTEGER",
+            "nullable": false,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "artifact_sha256",
+            "type": "TEXT",
+            "nullable": false,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          }
+        ],
+        "primaryKey": [
+          {
+            "column": "event_id",
+            "position": 1
+          }
+        ],
+        "uniqueKeys": [
+          {
+            "name": "sqlite_autoindex_events_2",
+            "origin": "u",
+            "columns": [
+              "attempt_id",
+              "sequence"
+            ]
+          }
+        ],
+        "uniqueIndexes": [
+          {
+            "name": "sqlite_autoindex_events_1",
+            "origin": "pk",
+            "partial": false,
+            "columns": [
+              {
+                "position": 0,
+                "column": "event_id",
+                "expression": false,
+                "descending": false,
+                "collation": "BINARY"
+              }
+            ],
+            "sql": null
+          },
+          {
+            "name": "sqlite_autoindex_events_2",
+            "origin": "u",
+            "partial": false,
+            "columns": [
+              {
+                "position": 0,
+                "column": "attempt_id",
+                "expression": false,
+                "descending": false,
+                "collation": "BINARY"
+              },
+              {
+                "position": 1,
+                "column": "sequence",
+                "expression": false,
+                "descending": false,
+                "collation": "BINARY"
+              }
+            ],
+            "sql": null
+          }
+        ],
+        "foreignKeys": [
+          {
+            "column": "attempt_id",
+            "table": "attempts",
+            "referencedColumn": "attempt_id",
+            "constraint": 0,
+            "position": 0,
+            "onUpdate": "NO ACTION",
+            "onDelete": "NO ACTION",
+            "match": "NONE"
+          }
+        ],
+        "rowCount": 29,
+        "viewSql": null,
+        "tableSql": "CREATE TABLE events(event_id TEXT PRIMARY KEY,attempt_id TEXT NOT NULL REFERENCES attempts,sequence INTEGER NOT NULL,kind TEXT NOT NULL,occurred_at TEXT NOT NULL,clock_domain TEXT NOT NULL,precision_ms INTEGER NOT NULL,artifact TEXT NOT NULL,byte_start INTEGER NOT NULL,byte_end INTEGER NOT NULL,artifact_sha256 TEXT NOT NULL,UNIQUE(attempt_id,sequence))",
+        "rows": [
+          {
+            "event_id": "attempt-11038-1-e1",
+            "attempt_id": "attempt-11038-1",
+            "sequence": 1,
+            "kind": "request-created",
+            "occurred_at": "2018-04-30T09:00:00Z",
+            "clock_domain": "synthetic-shipping-utc",
+            "precision_ms": 1000,
+            "artifact": "base.jsonl",
+            "byte_start": 0,
+            "byte_end": 234,
+            "artifact_sha256": "5814c09c2821dcf5fb7c313d4416fadd71f62519ab8aafe01de0ac6e6a4db65e"
+          },
+          {
+            "event_id": "attempt-11038-1-e2",
+            "attempt_id": "attempt-11038-1",
+            "sequence": 2,
+            "kind": "publication-acknowledged",
+            "occurred_at": "2018-04-30T09:00:01Z",
+            "clock_domain": "synthetic-shipping-utc",
+            "precision_ms": 1000,
+            "artifact": "base.jsonl",
+            "byte_start": 234,
+            "byte_end": 477,
+            "artifact_sha256": "5814c09c2821dcf5fb7c313d4416fadd71f62519ab8aafe01de0ac6e6a4db65e"
+          },
+          {
+            "event_id": "attempt-11038-1-e3",
+            "attempt_id": "attempt-11038-1",
+            "sequence": 3,
+            "kind": "receiver-received",
+            "occurred_at": "2018-04-30T09:00:02Z",
+            "clock_domain": "synthetic-shipping-utc",
+            "precision_ms": 1000,
+            "artifact": "base.jsonl",
+            "byte_start": 477,
+            "byte_end": 713,
+            "artifact_sha256": "5814c09c2821dcf5fb7c313d4416fadd71f62519ab8aafe01de0ac6e6a4db65e"
+          },
+          {
+            "event_id": "attempt-11038-1-e4",
+            "attempt_id": "attempt-11038-1",
+            "sequence": 4,
+            "kind": "route-resolved",
+            "occurred_at": "2018-04-30T09:00:03Z",
+            "clock_domain": "synthetic-shipping-utc",
+            "precision_ms": 1000,
+            "artifact": "base.jsonl",
+            "byte_start": 713,
+            "byte_end": 946,
+            "artifact_sha256": "5814c09c2821dcf5fb7c313d4416fadd71f62519ab8aafe01de0ac6e6a4db65e"
+          },
+          {
+            "event_id": "attempt-11038-1-e5",
+            "attempt_id": "attempt-11038-1",
+            "sequence": 5,
+            "kind": "assignment-accepted",
+            "occurred_at": "2018-04-30T09:00:04Z",
+            "clock_domain": "synthetic-shipping-utc",
+            "precision_ms": 1000,
+            "artifact": "base.jsonl",
+            "byte_start": 946,
+            "byte_end": 1184,
+            "artifact_sha256": "5814c09c2821dcf5fb7c313d4416fadd71f62519ab8aafe01de0ac6e6a4db65e"
+          },
+          {
+            "event_id": "attempt-11045-1-e1",
+            "attempt_id": "attempt-11045-1",
+            "sequence": 1,
+            "kind": "request-created",
+            "occurred_at": "2018-05-20T09:00:00Z",
+            "clock_domain": "synthetic-shipping-utc",
+            "precision_ms": 1000,
+            "artifact": "base.jsonl",
+            "byte_start": 1184,
+            "byte_end": 1418,
+            "artifact_sha256": "5814c09c2821dcf5fb7c313d4416fadd71f62519ab8aafe01de0ac6e6a4db65e"
+          },
+          {
+            "event_id": "attempt-11045-1-e2",
+            "attempt_id": "attempt-11045-1",
+            "sequence": 2,
+            "kind": "publication-acknowledged",
+            "occurred_at": "2018-05-20T09:00:01Z",
+            "clock_domain": "synthetic-shipping-utc",
+            "precision_ms": 1000,
+            "artifact": "base.jsonl",
+            "byte_start": 1418,
+            "byte_end": 1661,
+            "artifact_sha256": "5814c09c2821dcf5fb7c313d4416fadd71f62519ab8aafe01de0ac6e6a4db65e"
+          },
+          {
+            "event_id": "attempt-11045-1-e3",
+            "attempt_id": "attempt-11045-1",
+            "sequence": 3,
+            "kind": "receiver-received",
+            "occurred_at": "2018-05-20T09:00:02Z",
+            "clock_domain": "synthetic-shipping-utc",
+            "precision_ms": 1000,
+            "artifact": "base.jsonl",
+            "byte_start": 1661,
+            "byte_end": 1897,
+            "artifact_sha256": "5814c09c2821dcf5fb7c313d4416fadd71f62519ab8aafe01de0ac6e6a4db65e"
+          },
+          {
+            "event_id": "attempt-11045-1-e4",
+            "attempt_id": "attempt-11045-1",
+            "sequence": 4,
+            "kind": "routing-blocked",
+            "occurred_at": "2018-05-20T09:00:03Z",
+            "clock_domain": "synthetic-shipping-utc",
+            "precision_ms": 1000,
+            "artifact": "base.jsonl",
+            "byte_start": 1897,
+            "byte_end": 2131,
+            "artifact_sha256": "5814c09c2821dcf5fb7c313d4416fadd71f62519ab8aafe01de0ac6e6a4db65e"
+          },
+          {
+            "event_id": "attempt-11062-1-e1",
+            "attempt_id": "attempt-11062-1",
+            "sequence": 1,
+            "kind": "request-created",
+            "occurred_at": "2018-05-20T09:00:00Z",
+            "clock_domain": "synthetic-shipping-utc",
+            "precision_ms": 1000,
+            "artifact": "base.jsonl",
+            "byte_start": 2131,
+            "byte_end": 2365,
+            "artifact_sha256": "5814c09c2821dcf5fb7c313d4416fadd71f62519ab8aafe01de0ac6e6a4db65e"
+          },
+          {
+            "event_id": "attempt-11062-1-e2",
+            "attempt_id": "attempt-11062-1",
+            "sequence": 2,
+            "kind": "publication-acknowledged",
+            "occurred_at": "2018-05-20T09:00:01Z",
+            "clock_domain": "synthetic-shipping-utc",
+            "precision_ms": 1000,
+            "artifact": "base.jsonl",
+            "byte_start": 2365,
+            "byte_end": 2608,
+            "artifact_sha256": "5814c09c2821dcf5fb7c313d4416fadd71f62519ab8aafe01de0ac6e6a4db65e"
+          },
+          {
+            "event_id": "attempt-11062-1-e3",
+            "attempt_id": "attempt-11062-1",
+            "sequence": 3,
+            "kind": "receiver-received",
+            "occurred_at": "2018-05-20T09:00:02Z",
+            "clock_domain": "synthetic-shipping-utc",
+            "precision_ms": 1000,
+            "artifact": "base.jsonl",
+            "byte_start": 2608,
+            "byte_end": 2844,
+            "artifact_sha256": "5814c09c2821dcf5fb7c313d4416fadd71f62519ab8aafe01de0ac6e6a4db65e"
+          }
+        ]
+      },
+      {
+        "name": "partners",
+        "modelEntity": "partners",
+        "modelRecordset": null,
+        "kind": "table",
+        "description": "",
+        "columns": [
+          {
+            "name": "partner_id",
+            "type": "TEXT",
+            "nullable": true,
+            "primaryKey": true,
+            "primaryKeyOrder": 1,
+            "primaryKeyPosition": 1,
+            "defaultValue": null
+          },
+          {
+            "name": "enabled",
+            "type": "INTEGER",
+            "nullable": false,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          }
+        ],
+        "primaryKey": [
+          {
+            "column": "partner_id",
+            "position": 1
+          }
+        ],
+        "uniqueKeys": [],
+        "uniqueIndexes": [
+          {
+            "name": "sqlite_autoindex_partners_1",
+            "origin": "pk",
+            "partial": false,
+            "columns": [
+              {
+                "position": 0,
+                "column": "partner_id",
+                "expression": false,
+                "descending": false,
+                "collation": "BINARY"
+              }
+            ],
+            "sql": null
+          }
+        ],
+        "foreignKeys": [],
+        "rowCount": 2,
+        "viewSql": null,
+        "tableSql": "CREATE TABLE partners(partner_id TEXT PRIMARY KEY,enabled INTEGER NOT NULL CHECK(enabled IN(0,1)))",
+        "rows": [
+          {
+            "partner_id": "disabled-partner",
+            "enabled": 0
+          },
+          {
+            "partner_id": "united-package",
+            "enabled": 1
+          }
+        ]
+      },
+      {
+        "name": "publications",
+        "modelEntity": "publications",
+        "modelRecordset": null,
+        "kind": "table",
+        "description": "",
+        "columns": [
+          {
+            "name": "publication_id",
+            "type": "TEXT",
+            "nullable": true,
+            "primaryKey": true,
+            "primaryKeyOrder": 1,
+            "primaryKeyPosition": 1,
+            "defaultValue": null
+          },
+          {
+            "name": "request_id",
+            "type": "TEXT",
+            "nullable": false,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "message_id",
+            "type": "TEXT",
+            "nullable": false,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "acknowledged_at",
+            "type": "TEXT",
+            "nullable": false,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          }
+        ],
+        "primaryKey": [
+          {
+            "column": "publication_id",
+            "position": 1
+          }
+        ],
+        "uniqueKeys": [],
+        "uniqueIndexes": [
+          {
+            "name": "sqlite_autoindex_publications_1",
+            "origin": "pk",
+            "partial": false,
+            "columns": [
+              {
+                "position": 0,
+                "column": "publication_id",
+                "expression": false,
+                "descending": false,
+                "collation": "BINARY"
+              }
+            ],
+            "sql": null
+          }
+        ],
+        "foreignKeys": [
+          {
+            "column": "request_id",
+            "table": "requests",
+            "referencedColumn": "request_id",
+            "constraint": 0,
+            "position": 0,
+            "onUpdate": "NO ACTION",
+            "onDelete": "NO ACTION",
+            "match": "NONE"
+          }
+        ],
+        "rowCount": 8,
+        "viewSql": null,
+        "tableSql": "CREATE TABLE publications(publication_id TEXT PRIMARY KEY,request_id TEXT NOT NULL REFERENCES requests,message_id TEXT NOT NULL,acknowledged_at TEXT NOT NULL)",
+        "rows": [
+          {
+            "publication_id": "publication-11038",
+            "request_id": "request-11038",
+            "message_id": "message-11038",
+            "acknowledged_at": "2018-04-30T09:00:01Z"
+          },
+          {
+            "publication_id": "publication-11045",
+            "request_id": "request-11045",
+            "message_id": "message-11045",
+            "acknowledged_at": "2018-05-20T09:00:01Z"
+          },
+          {
+            "publication_id": "publication-11062",
+            "request_id": "request-11062",
+            "message_id": "message-11062",
+            "acknowledged_at": "2018-05-20T09:00:01Z"
+          },
+          {
+            "publication_id": "publication-90001",
+            "request_id": "request-90001",
+            "message_id": "message-90001",
+            "acknowledged_at": "2018-05-20T09:00:01Z"
+          },
+          {
+            "publication_id": "publication-90002",
+            "request_id": "request-90002",
+            "message_id": "message-90002",
+            "acknowledged_at": "2018-05-20T09:00:01Z"
+          },
+          {
+            "publication_id": "publication-90003",
+            "request_id": "request-90003",
+            "message_id": "message-90003",
+            "acknowledged_at": "2018-05-20T09:00:01Z"
+          },
+          {
+            "publication_id": "publication-90004",
+            "request_id": "request-90004",
+            "message_id": "message-90004",
+            "acknowledged_at": "2018-05-20T09:00:01Z"
+          },
+          {
+            "publication_id": "publication-90005",
+            "request_id": "request-90005",
+            "message_id": "message-90005",
+            "acknowledged_at": "2018-05-20T09:00:01Z"
+          }
+        ]
+      },
+      {
+        "name": "receipts",
+        "modelEntity": "receipts",
+        "modelRecordset": null,
+        "kind": "table",
+        "description": "",
+        "columns": [
+          {
+            "name": "receipt_id",
+            "type": "TEXT",
+            "nullable": true,
+            "primaryKey": true,
+            "primaryKeyOrder": 1,
+            "primaryKeyPosition": 1,
+            "defaultValue": null
+          },
+          {
+            "name": "request_id",
+            "type": "TEXT",
+            "nullable": false,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "message_id",
+            "type": "TEXT",
+            "nullable": false,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "received_at",
+            "type": "TEXT",
+            "nullable": false,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          }
+        ],
+        "primaryKey": [
+          {
+            "column": "receipt_id",
+            "position": 1
+          }
+        ],
+        "uniqueKeys": [],
+        "uniqueIndexes": [
+          {
+            "name": "sqlite_autoindex_receipts_1",
+            "origin": "pk",
+            "partial": false,
+            "columns": [
+              {
+                "position": 0,
+                "column": "receipt_id",
+                "expression": false,
+                "descending": false,
+                "collation": "BINARY"
+              }
+            ],
+            "sql": null
+          }
+        ],
+        "foreignKeys": [
+          {
+            "column": "request_id",
+            "table": "requests",
+            "referencedColumn": "request_id",
+            "constraint": 0,
+            "position": 0,
+            "onUpdate": "NO ACTION",
+            "onDelete": "NO ACTION",
+            "match": "NONE"
+          }
+        ],
+        "rowCount": 7,
+        "viewSql": null,
+        "tableSql": "CREATE TABLE receipts(receipt_id TEXT PRIMARY KEY,request_id TEXT NOT NULL REFERENCES requests,message_id TEXT NOT NULL,received_at TEXT NOT NULL)",
+        "rows": [
+          {
+            "receipt_id": "receipt-11038",
+            "request_id": "request-11038",
+            "message_id": "message-11038",
+            "received_at": "2018-04-30T09:00:02Z"
+          },
+          {
+            "receipt_id": "receipt-11045",
+            "request_id": "request-11045",
+            "message_id": "message-11045",
+            "received_at": "2018-05-20T09:00:02Z"
+          },
+          {
+            "receipt_id": "receipt-11062",
+            "request_id": "request-11062",
+            "message_id": "message-11062",
+            "received_at": "2018-05-20T09:00:02Z"
+          },
+          {
+            "receipt_id": "receipt-90001",
+            "request_id": "request-90001",
+            "message_id": "message-90001",
+            "received_at": "2018-05-20T09:00:02Z"
+          },
+          {
+            "receipt_id": "receipt-90002",
+            "request_id": "request-90002",
+            "message_id": "message-90002",
+            "received_at": "2018-05-20T09:00:02Z"
+          },
+          {
+            "receipt_id": "receipt-90003",
+            "request_id": "request-90003",
+            "message_id": "message-90003",
+            "received_at": "2018-05-20T09:00:02Z"
+          },
+          {
+            "receipt_id": "receipt-90004",
+            "request_id": "request-90004",
+            "message_id": "wrong-message",
+            "received_at": "2018-05-20T09:00:02Z"
+          }
+        ]
+      },
+      {
+        "name": "requests",
+        "modelEntity": "requests",
+        "modelRecordset": null,
+        "kind": "table",
+        "description": "",
+        "columns": [
+          {
+            "name": "request_id",
+            "type": "TEXT",
+            "nullable": true,
+            "primaryKey": true,
+            "primaryKeyOrder": 1,
+            "primaryKeyPosition": 1,
+            "defaultValue": null
+          },
+          {
+            "name": "order_id",
+            "type": "INTEGER",
+            "nullable": false,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "shipper_id",
+            "type": "INTEGER",
+            "nullable": false,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "message_id",
+            "type": "TEXT",
+            "nullable": false,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "correlation_id",
+            "type": "TEXT",
+            "nullable": false,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "created_at",
+            "type": "TEXT",
+            "nullable": false,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          }
+        ],
+        "primaryKey": [
+          {
+            "column": "request_id",
+            "position": 1
+          }
+        ],
+        "uniqueKeys": [
+          {
+            "name": "sqlite_autoindex_requests_2",
+            "origin": "u",
+            "columns": [
+              "order_id"
+            ]
+          },
+          {
+            "name": "sqlite_autoindex_requests_3",
+            "origin": "u",
+            "columns": [
+              "message_id"
+            ]
+          }
+        ],
+        "uniqueIndexes": [
+          {
+            "name": "sqlite_autoindex_requests_1",
+            "origin": "pk",
+            "partial": false,
+            "columns": [
+              {
+                "position": 0,
+                "column": "request_id",
+                "expression": false,
+                "descending": false,
+                "collation": "BINARY"
+              }
+            ],
+            "sql": null
+          },
+          {
+            "name": "sqlite_autoindex_requests_2",
+            "origin": "u",
+            "partial": false,
+            "columns": [
+              {
+                "position": 0,
+                "column": "order_id",
+                "expression": false,
+                "descending": false,
+                "collation": "BINARY"
+              }
+            ],
+            "sql": null
+          },
+          {
+            "name": "sqlite_autoindex_requests_3",
+            "origin": "u",
+            "partial": false,
+            "columns": [
+              {
+                "position": 0,
+                "column": "message_id",
+                "expression": false,
+                "descending": false,
+                "collation": "BINARY"
+              }
+            ],
+            "sql": null
+          }
+        ],
+        "foreignKeys": [],
+        "rowCount": 8,
+        "viewSql": null,
+        "tableSql": "CREATE TABLE requests(request_id TEXT PRIMARY KEY,order_id INTEGER UNIQUE NOT NULL,shipper_id INTEGER NOT NULL,message_id TEXT UNIQUE NOT NULL,correlation_id TEXT NOT NULL,created_at TEXT NOT NULL)",
+        "rows": [
+          {
+            "request_id": "request-11038",
+            "order_id": 11038,
+            "shipper_id": 2,
+            "message_id": "message-11038",
+            "correlation_id": "correlation-11038",
+            "created_at": "2018-04-30T09:00:00Z"
+          },
+          {
+            "request_id": "request-11045",
+            "order_id": 11045,
+            "shipper_id": 2,
+            "message_id": "message-11045",
+            "correlation_id": "correlation-11045",
+            "created_at": "2018-05-20T09:00:00Z"
+          },
+          {
+            "request_id": "request-11062",
+            "order_id": 11062,
+            "shipper_id": 2,
+            "message_id": "message-11062",
+            "correlation_id": "correlation-11062",
+            "created_at": "2018-05-20T09:00:00Z"
+          },
+          {
+            "request_id": "request-90001",
+            "order_id": 90001,
+            "shipper_id": 91,
+            "message_id": "message-90001",
+            "correlation_id": "correlation-90001",
+            "created_at": "2018-05-20T09:00:00Z"
+          },
+          {
+            "request_id": "request-90002",
+            "order_id": 90002,
+            "shipper_id": 92,
+            "message_id": "message-90002",
+            "correlation_id": "correlation-90002",
+            "created_at": "2018-05-20T09:00:00Z"
+          },
+          {
+            "request_id": "request-90003",
+            "order_id": 90003,
+            "shipper_id": 93,
+            "message_id": "message-90003",
+            "correlation_id": "correlation-90003",
+            "created_at": "2018-05-20T09:00:00Z"
+          },
+          {
+            "request_id": "request-90004",
+            "order_id": 90004,
+            "shipper_id": 2,
+            "message_id": "message-90004",
+            "correlation_id": "correlation-90004",
+            "created_at": "2018-05-20T09:00:00Z"
+          },
+          {
+            "request_id": "request-90005",
+            "order_id": 90005,
+            "shipper_id": 2,
+            "message_id": "message-90005",
+            "correlation_id": "correlation-90005",
+            "created_at": "2018-05-20T09:00:00Z"
+          }
+        ]
+      },
+      {
+        "name": "routes",
+        "modelEntity": "routes",
+        "modelRecordset": null,
+        "kind": "table",
+        "description": "",
+        "columns": [
+          {
+            "name": "route_id",
+            "type": "TEXT",
+            "nullable": true,
+            "primaryKey": true,
+            "primaryKeyOrder": 1,
+            "primaryKeyPosition": 1,
+            "defaultValue": null
+          },
+          {
+            "name": "revision",
+            "type": "INTEGER",
+            "nullable": false,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "shipper_id",
+            "type": "INTEGER",
+            "nullable": false,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "partner_id",
+            "type": "TEXT",
+            "nullable": false,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "valid_from",
+            "type": "TEXT",
+            "nullable": false,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "valid_until",
+            "type": "TEXT",
+            "nullable": true,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          }
+        ],
+        "primaryKey": [
+          {
+            "column": "route_id",
+            "position": 1
+          }
+        ],
+        "uniqueKeys": [],
+        "uniqueIndexes": [
+          {
+            "name": "sqlite_autoindex_routes_1",
+            "origin": "pk",
+            "partial": false,
+            "columns": [
+              {
+                "position": 0,
+                "column": "route_id",
+                "expression": false,
+                "descending": false,
+                "collation": "BINARY"
+              }
+            ],
+            "sql": null
+          }
+        ],
+        "foreignKeys": [
+          {
+            "column": "partner_id",
+            "table": "partners",
+            "referencedColumn": "partner_id",
+            "constraint": 0,
+            "position": 0,
+            "onUpdate": "NO ACTION",
+            "onDelete": "NO ACTION",
+            "match": "NONE"
+          },
+          {
+            "column": "revision",
+            "table": "configurations",
+            "referencedColumn": "revision",
+            "constraint": 1,
+            "position": 0,
+            "onUpdate": "NO ACTION",
+            "onDelete": "NO ACTION",
+            "match": "NONE"
+          }
+        ],
+        "rowCount": 4,
+        "viewSql": null,
+        "tableSql": "CREATE TABLE routes(route_id TEXT PRIMARY KEY,revision INTEGER NOT NULL REFERENCES configurations,shipper_id INTEGER NOT NULL,partner_id TEXT NOT NULL REFERENCES partners,valid_from TEXT NOT NULL,valid_until TEXT)",
+        "rows": [
+          {
+            "route_id": "ambiguous-a",
+            "revision": 17,
+            "shipper_id": 92,
+            "partner_id": "united-package",
+            "valid_from": "2018-04-01T00:00:00Z",
+            "valid_until": null
+          },
+          {
+            "route_id": "ambiguous-b",
+            "revision": 17,
+            "shipper_id": 92,
+            "partner_id": "united-package",
+            "valid_from": "2018-04-01T00:00:00Z",
+            "valid_until": null
+          },
+          {
+            "route_id": "disabled",
+            "revision": 17,
+            "shipper_id": 93,
+            "partner_id": "disabled-partner",
+            "valid_from": "2018-04-01T00:00:00Z",
+            "valid_until": null
+          },
+          {
+            "route_id": "route-17-2",
+            "revision": 17,
+            "shipper_id": 2,
+            "partner_id": "united-package",
+            "valid_from": "2018-04-01T00:00:00Z",
+            "valid_until": "2018-05-19T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "name": "workspace_state",
+        "modelEntity": "workspace_state",
+        "modelRecordset": null,
+        "kind": "table",
+        "description": "",
+        "columns": [
+          {
+            "name": "generation",
+            "type": "TEXT",
+            "nullable": true,
+            "primaryKey": true,
+            "primaryKeyOrder": 1,
+            "primaryKeyPosition": 1,
+            "defaultValue": null
+          },
+          {
+            "name": "current_config",
+            "type": "INTEGER",
+            "nullable": false,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "business_clock",
+            "type": "TEXT",
+            "nullable": false,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          }
+        ],
+        "primaryKey": [
+          {
+            "column": "generation",
+            "position": 1
+          }
+        ],
+        "uniqueKeys": [],
+        "uniqueIndexes": [
+          {
+            "name": "sqlite_autoindex_workspace_state_1",
+            "origin": "pk",
+            "partial": false,
+            "columns": [
+              {
+                "position": 0,
+                "column": "generation",
+                "expression": false,
+                "descending": false,
+                "collation": "BINARY"
+              }
+            ],
+            "sql": null
+          }
+        ],
+        "foreignKeys": [],
+        "rowCount": 1,
+        "viewSql": null,
+        "tableSql": "CREATE TABLE workspace_state(generation TEXT PRIMARY KEY,current_config INTEGER NOT NULL,business_clock TEXT NOT NULL)",
+        "rows": [
+          {
+            "generation": "shipping-base-v1",
+            "current_config": 17,
+            "business_clock": "2018-05-20T10:00:00Z"
+          }
+        ]
+      },
+      {
+        "name": "current_routes",
+        "modelEntity": null,
+        "modelRecordset": null,
+        "kind": "view",
+        "description": "",
+        "columns": [
+          {
+            "name": "request_id",
+            "type": "",
+            "nullable": true,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "order_id",
+            "type": "",
+            "nullable": true,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "route_id",
+            "type": "",
+            "nullable": true,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "partner_id",
+            "type": "",
+            "nullable": true,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "valid_from",
+            "type": "",
+            "nullable": true,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "valid_until",
+            "type": "",
+            "nullable": true,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "current_config",
+            "type": "",
+            "nullable": true,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "business_clock",
+            "type": "",
+            "nullable": true,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          }
+        ],
+        "primaryKey": [],
+        "foreignKeys": [],
+        "rowCount": 9,
+        "viewSql": "CREATE VIEW current_routes AS SELECT r.request_id,r.order_id,p.route_id,p.partner_id,p.valid_from,p.valid_until,w.current_config,w.business_clock FROM requests r CROSS JOIN workspace_state w LEFT JOIN routes p ON p.shipper_id=r.shipper_id AND p.revision=w.current_config AND p.valid_from<=w.business_clock AND (p.valid_until IS NULL OR w.business_clock<p.valid_until)",
+        "tableSql": null,
+        "rows": [
+          {
+            "request_id": "request-11038",
+            "order_id": 11038,
+            "route_id": null,
+            "partner_id": null,
+            "valid_from": null,
+            "valid_until": null,
+            "current_config": 17,
+            "business_clock": "2018-05-20T10:00:00Z"
+          },
+          {
+            "request_id": "request-11045",
+            "order_id": 11045,
+            "route_id": null,
+            "partner_id": null,
+            "valid_from": null,
+            "valid_until": null,
+            "current_config": 17,
+            "business_clock": "2018-05-20T10:00:00Z"
+          },
+          {
+            "request_id": "request-11062",
+            "order_id": 11062,
+            "route_id": null,
+            "partner_id": null,
+            "valid_from": null,
+            "valid_until": null,
+            "current_config": 17,
+            "business_clock": "2018-05-20T10:00:00Z"
+          },
+          {
+            "request_id": "request-90001",
+            "order_id": 90001,
+            "route_id": null,
+            "partner_id": null,
+            "valid_from": null,
+            "valid_until": null,
+            "current_config": 17,
+            "business_clock": "2018-05-20T10:00:00Z"
+          },
+          {
+            "request_id": "request-90002",
+            "order_id": 90002,
+            "route_id": "ambiguous-a",
+            "partner_id": "united-package",
+            "valid_from": "2018-04-01T00:00:00Z",
+            "valid_until": null,
+            "current_config": 17,
+            "business_clock": "2018-05-20T10:00:00Z"
+          },
+          {
+            "request_id": "request-90002",
+            "order_id": 90002,
+            "route_id": "ambiguous-b",
+            "partner_id": "united-package",
+            "valid_from": "2018-04-01T00:00:00Z",
+            "valid_until": null,
+            "current_config": 17,
+            "business_clock": "2018-05-20T10:00:00Z"
+          },
+          {
+            "request_id": "request-90003",
+            "order_id": 90003,
+            "route_id": "disabled",
+            "partner_id": "disabled-partner",
+            "valid_from": "2018-04-01T00:00:00Z",
+            "valid_until": null,
+            "current_config": 17,
+            "business_clock": "2018-05-20T10:00:00Z"
+          },
+          {
+            "request_id": "request-90004",
+            "order_id": 90004,
+            "route_id": null,
+            "partner_id": null,
+            "valid_from": null,
+            "valid_until": null,
+            "current_config": 17,
+            "business_clock": "2018-05-20T10:00:00Z"
+          },
+          {
+            "request_id": "request-90005",
+            "order_id": 90005,
+            "route_id": null,
+            "partner_id": null,
+            "valid_from": null,
+            "valid_until": null,
+            "current_config": 17,
+            "business_clock": "2018-05-20T10:00:00Z"
+          }
+        ]
+      },
+      {
+        "name": "latest_attempts",
+        "modelEntity": null,
+        "modelRecordset": null,
+        "kind": "view",
+        "description": "",
+        "columns": [
+          {
+            "name": "attempt_id",
+            "type": "",
+            "nullable": true,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "request_id",
+            "type": "",
+            "nullable": true,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "attempt_no",
+            "type": "",
+            "nullable": true,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "config_revision",
+            "type": "",
+            "nullable": true,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "started_at",
+            "type": "",
+            "nullable": true,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          },
+          {
+            "name": "state",
+            "type": "",
+            "nullable": true,
+            "primaryKey": false,
+            "primaryKeyOrder": 0,
+            "primaryKeyPosition": null,
+            "defaultValue": null
+          }
+        ],
+        "primaryKey": [],
+        "foreignKeys": [],
+        "rowCount": 8,
+        "viewSql": "CREATE VIEW latest_attempts AS SELECT a.* FROM attempts a WHERE NOT EXISTS(SELECT 1 FROM attempts newer WHERE newer.request_id=a.request_id AND newer.attempt_no>a.attempt_no)",
+        "tableSql": null,
+        "rows": [
+          {
+            "attempt_id": "attempt-11038-1",
+            "request_id": "request-11038",
+            "attempt_no": 1,
+            "config_revision": 17,
+            "started_at": "2018-04-30T09:00:00Z",
+            "state": "accepted"
+          },
+          {
+            "attempt_id": "attempt-11045-1",
+            "request_id": "request-11045",
+            "attempt_no": 1,
+            "config_revision": 17,
+            "started_at": "2018-05-20T09:00:00Z",
+            "state": "blocked"
+          },
+          {
+            "attempt_id": "attempt-11062-1",
+            "request_id": "request-11062",
+            "attempt_no": 1,
+            "config_revision": 17,
+            "started_at": "2018-05-20T09:00:00Z",
+            "state": "blocked"
+          },
+          {
+            "attempt_id": "attempt-90001-1",
+            "request_id": "request-90001",
+            "attempt_no": 1,
+            "config_revision": 17,
+            "started_at": "2018-05-20T09:00:00Z",
+            "state": "blocked"
+          },
+          {
+            "attempt_id": "attempt-90002-1",
+            "request_id": "request-90002",
+            "attempt_no": 1,
+            "config_revision": 17,
+            "started_at": "2018-05-20T09:00:00Z",
+            "state": "blocked"
+          },
+          {
+            "attempt_id": "attempt-90003-1",
+            "request_id": "request-90003",
+            "attempt_no": 1,
+            "config_revision": 17,
+            "started_at": "2018-05-20T09:00:00Z",
+            "state": "blocked"
+          },
+          {
+            "attempt_id": "attempt-90004-1",
+            "request_id": "request-90004",
+            "attempt_no": 1,
+            "config_revision": 17,
+            "started_at": "2018-05-20T09:00:00Z",
+            "state": "blocked"
+          },
+          {
+            "attempt_id": "attempt-90005-1",
+            "request_id": "request-90005",
+            "attempt_no": 1,
+            "config_revision": 17,
+            "started_at": "2018-05-20T09:00:00Z",
+            "state": "blocked"
+          }
+        ]
+      }
+    ],
+    "sourceViews": []
+  },
+  "exports": [
+    {
+      "table": null,
+      "format": "sqlite",
+      "path": "artifacts/shipping.sqlite",
+      "bytes": 110592
+    },
+    {
+      "table": null,
+      "format": "sql",
+      "path": "artifacts/shipping.sql",
+      "bytes": 13383
+    },
+    {
+      "table": "assignments",
+      "format": "json",
+      "path": "artifacts/data/assignments.json",
+      "bytes": 193
+    },
+    {
+      "table": "assignments",
+      "format": "csv",
+      "path": "artifacts/data/assignments.csv",
+      "bytes": 160
+    },
+    {
+      "table": "attempts",
+      "format": "json",
+      "path": "artifacts/data/attempts.json",
+      "bytes": 1292
+    },
+    {
+      "table": "attempts",
+      "format": "csv",
+      "path": "artifacts/data/attempts.csv",
+      "bytes": 579
+    },
+    {
+      "table": "configurations",
+      "format": "json",
+      "path": "artifacts/data/configurations.json",
+      "bytes": 62
+    },
+    {
+      "table": "configurations",
+      "format": "csv",
+      "path": "artifacts/data/configurations.csv",
+      "bytes": 46
+    },
+    {
+      "table": "events",
+      "format": "json",
+      "path": "artifacts/data/events.json",
+      "bytes": 10432
+    },
+    {
+      "table": "events",
+      "format": "csv",
+      "path": "artifacts/data/events.csv",
+      "bytes": 5645
+    },
+    {
+      "table": "partners",
+      "format": "json",
+      "path": "artifacts/data/partners.json",
+      "bytes": 103
+    },
+    {
+      "table": "partners",
+      "format": "csv",
+      "path": "artifacts/data/partners.csv",
+      "bytes": 55
+    },
+    {
+      "table": "publications",
+      "format": "json",
+      "path": "artifacts/data/publications.json",
+      "bytes": 1163
+    },
+    {
+      "table": "publications",
+      "format": "csv",
+      "path": "artifacts/data/publications.csv",
+      "bytes": 589
+    },
+    {
+      "table": "receipts",
+      "format": "json",
+      "path": "artifacts/data/receipts.json",
+      "bytes": 934
+    },
+    {
+      "table": "receipts",
+      "format": "csv",
+      "path": "artifacts/data/receipts.csv",
+      "bytes": 486
+    },
+    {
+      "table": "requests",
+      "format": "json",
+      "path": "artifacts/data/requests.json",
+      "bytes": 1398
+    },
+    {
+      "table": "requests",
+      "format": "csv",
+      "path": "artifacts/data/requests.csv",
+      "bytes": 671
+    },
+    {
+      "table": "routes",
+      "format": "json",
+      "path": "artifacts/data/routes.json",
+      "bytes": 622
+    },
+    {
+      "table": "routes",
+      "format": "csv",
+      "path": "artifacts/data/routes.csv",
+      "bytes": 300
+    },
+    {
+      "table": "workspace_state",
+      "format": "json",
+      "path": "artifacts/data/workspace_state.json",
+      "bytes": 103
+    },
+    {
+      "table": "workspace_state",
+      "format": "csv",
+      "path": "artifacts/data/workspace_state.csv",
+      "bytes": 82
+    }
+  ]
+}
