@@ -1,0 +1,6 @@
+[
+  {"route_id": "ambiguous-a","revision": 17,"shipper_id": 92,"partner_id": "united-package","valid_from": "2018-04-01T00:00:00Z","valid_until": null},
+  {"route_id": "ambiguous-b","revision": 17,"shipper_id": 92,"partner_id": "united-package","valid_from": "2018-04-01T00:00:00Z","valid_until": null},
+  {"route_id": "disabled","revision": 17,"shipper_id": 93,"partner_id": "disabled-partner","valid_from": "2018-04-01T00:00:00Z","valid_until": null},
+  {"route_id": "route-17-2","revision": 17,"shipper_id": 2,"partner_id": "united-package","valid_from": "2018-04-01T00:00:00Z","valid_until": "2018-05-19T00:00:00Z"}
+]

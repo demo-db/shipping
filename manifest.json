@@ -1,0 +1,98 @@
+{
+  "contractVersion": 1,
+  "id": "shipping",
+  "name": "Shipping",
+  "description": "Synthetic Northwind companion with healthy11038 and blocked baseline requests11045 and11062; future recovery examples remain separate, with the11062 replay pending.",
+  "domain": "Synthetic logistics training",
+  "siteHost": "shipping.demodb.dev",
+  "aliases": [],
+  "source": {
+    "repository": "https://github.com/datatug/datatug-demo-project",
+    "revision": "cb841345e88d01229857b2bdb51cc07f4ef4bec7",
+    "introducedRevision": "38a51dda39d988f2d2bcf23703bd1a969d49f4a3",
+    "path": "demo-project-1/fixtures/shipping/base.sqlite",
+    "license": "CC0-1.0",
+    "licenseFile": "LICENSE",
+    "notes": "Public synthetic training companion to Northwind; no real shipment or partner call is represented.",
+    "databaseSha256": "73f0d871607ee5b24de68b5398c25806f556a3126a31e1865fee79b2881977e0"
+  },
+  "semantics": {},
+  "queries": [
+    {
+      "title": "Blocked request and current routing",
+      "sql": "SELECT * FROM current_routes WHERE order_id = 11045;"
+    }
+  ],
+  "capabilities": {
+    "exports": [
+      "sqlite",
+      "csv",
+      "json",
+      "sql"
+    ],
+    "ovdb": {
+      "available": true,
+      "canonicalUrl": "https://demodb.dev/shipping/",
+      "serverId": "https://demodb.dev/ovdb",
+      "serverDbBaseUrl": "https://demodb.dev/ovdb/db/shipping/",
+      "connection": "https://demodb.dev/ovdb/v1/databases/shipping",
+      "query": true,
+      "readOnly": true,
+      "deploymentVerified": false
+    },
+    "datatug": {
+      "available": false
+    }
+  },
+  "generator": {
+    "publisher": {
+      "name": "DemoDB",
+      "url": "https://demodb.dev",
+      "repository": "https://github.com/demo-db/shipping"
+    },
+    "licences": {
+      "model": "CC0-1.0",
+      "meaning": "CC0-1.0"
+    },
+    "emitModelSpdxLicense": true,
+    "model": {
+      "address": "modelspec://github.com/demo-db/shipping/0.1.0",
+      "moduleId": "shipping",
+      "name": "shipping",
+      "version": "0.1.0"
+    },
+    "meaning": {
+      "id": "shipping",
+      "address": "meaning://github.com/demo-db/shipping",
+      "name": "Shipping",
+      "description": "Synthetic Northwind companion with healthy11038 and blocked baseline requests11045 and11062; future recovery examples remain separate, with the11062 replay pending.",
+      "license": "CC0-1.0",
+      "core": {
+        "address": "meaning://github.com/meaninggraph/core",
+        "revision": "982916d73f0a35ff2558b0062f58aa3ac4f24d97"
+      },
+      "concepts": []
+    },
+    "ovdb": {
+      "query": true,
+      "deployment": {
+        "engine": "openvaultdb-go",
+        "url": "https://cloud.openvaultdb.com/ovdb/db/shipping",
+        "discovery": "https://shipping.demodb.dev/.well-known/openvaultdb"
+      },
+      "recordsets": [
+        "requests",
+        "publications",
+        "receipts",
+        "configurations",
+        "partners",
+        "routes",
+        "attempts",
+        "events",
+        "assignments",
+        "workspace_state"
+      ]
+    }
+  },
+  "dataFile": "data-source/base.sqlite"
+}

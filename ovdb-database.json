@@ -1,0 +1,671 @@
+{
+  "format": "ovdb-database/draft-1",
+  "id": "https://demodb.dev/shipping/",
+  "localId": "shipping",
+  "serverId": "https://demodb.dev/ovdb",
+  "serverDbBaseUrl": "https://demodb.dev/ovdb/db/shipping/",
+  "title": "Shipping",
+  "description": "Synthetic Northwind companion with healthy11038 and blocked baseline requests11045 and11062; future recovery examples remain separate, with the11062 replay pending.",
+  "homepage": "https://shipping.demodb.dev/",
+  "apiUrl": "https://demodb.dev/ovdb/v1/databases/shipping",
+  "capabilities": {
+    "read": true,
+    "query": true,
+    "write": false
+  },
+  "deployment": {
+    "engine": "openvaultdb-go",
+    "url": "https://cloud.openvaultdb.com/ovdb/db/shipping",
+    "discovery": "https://shipping.demodb.dev/.well-known/openvaultdb"
+  },
+  "model": {
+    "id": "modelspec://github.com/demo-db/shipping/0.1.0",
+    "url": "https://shipping.demodb.dev/model/shipping.modelspec.json",
+    "hclUrl": "https://shipping.demodb.dev/model/shipping.modelspec.hcl"
+  },
+  "meaning": {
+    "id": "meaning://github.com/demo-db/shipping",
+    "url": "https://shipping.demodb.dev/model/shipping.meaning.yaml"
+  },
+  "publisher": {
+    "name": "DemoDB",
+    "url": "https://demodb.dev",
+    "repository": "https://github.com/demo-db/shipping"
+  },
+  "provenance": {
+    "repository": "https://github.com/datatug/datatug-demo-project",
+    "revision": "cb841345e88d01229857b2bdb51cc07f4ef4bec7",
+    "path": "demo-project-1/fixtures/shipping/base.sqlite",
+    "sha256": "73f0d871607ee5b24de68b5398c25806f556a3126a31e1865fee79b2881977e0",
+    "license": "CC0-1.0",
+    "notes": "Public synthetic training companion to Northwind; no real shipment or partner call is represented. The sha256 identifies the generated SQLite fixture at data-source/base.sqlite; recipe inputs are identified separately by the provider manifest."
+  },
+  "licences": {
+    "data": "CC0-1.0",
+    "model": "CC0-1.0",
+    "meaning": "CC0-1.0"
+  },
+  "recordsets": [
+    {
+      "name": "requests",
+      "kind": "table",
+      "description": "",
+      "rowCount": 8,
+      "columns": [
+        {
+          "name": "request_id",
+          "type": "TEXT",
+          "nullable": true,
+          "primaryKey": true,
+          "primaryKeyPosition": 1,
+          "defaultValue": null
+        },
+        {
+          "name": "order_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "primaryKey": false,
+          "primaryKeyPosition": null,
+          "defaultValue": null
+        },
+        {
+          "name": "shipper_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "primaryKey": false,
+          "primaryKeyPosition": null,
+          "defaultValue": null
+        },
+        {
+          "name": "message_id",
+          "type": "TEXT",
+          "nullable": false,
+          "primaryKey": false,
+          "primaryKeyPosition": null,
+          "defaultValue": null
+        },
+        {
+          "name": "correlation_id",
+          "type": "TEXT",
+          "nullable": false,
+          "primaryKey": false,
+          "primaryKeyPosition": null,
+          "defaultValue": null
+        },
+        {
+          "name": "created_at",
+          "type": "TEXT",
+          "nullable": false,
+          "primaryKey": false,
+          "primaryKeyPosition": null,
+          "defaultValue": null
+        }
+      ],
+      "primaryKey": [
+        {
+          "column": "request_id",
+          "position": 1
+        }
+      ],
+      "foreignKeys": [],
+      "modelEntity": "requests"
+    },
+    {
+      "name": "publications",
+      "kind": "table",
+      "description": "",
+      "rowCount": 8,
+      "columns": [
+        {
+          "name": "publication_id",
+          "type": "TEXT",
+          "nullable": true,
+          "primaryKey": true,
+          "primaryKeyPosition": 1,
+          "defaultValue": null
+        },
+        {
+          "name": "request_id",
+          "type": "TEXT",
+          "nullable": false,
+          "primaryKey": false,
+          "primaryKeyPosition": null,
+          "defaultValue": null
+        },
+        {
+          "name": "message_id",
+          "type": "TEXT",
+          "nullable": false,
+          "primaryKey": false,
+          "primaryKeyPosition": null,
+          "defaultValue": null
+        },
+        {
+          "name": "acknowledged_at",
+          "type": "TEXT",
+          "nullable": false,
+          "primaryKey": false,
+          "primaryKeyPosition": null,
+          "defaultValue": null
+        }
+      ],
+      "primaryKey": [
+        {
+          "column": "publication_id",
+          "position": 1
+        }
+      ],
+      "foreignKeys": [
+        {
+          "column": "request_id",
+          "table": "requests",
+          "referencedColumn": "request_id",
+          "constraint": 0,
+          "position": 0
+        }
+      ],
+      "modelEntity": "publications"
+    },
+    {
+      "name": "receipts",
+      "kind": "table",
+      "description": "",
+      "rowCount": 7,
+      "columns": [
+        {
+          "name": "receipt_id",
+          "type": "TEXT",
+          "nullable": true,
+          "primaryKey": true,
+          "primaryKeyPosition": 1,
+          "defaultValue": null
+        },
+        {
+          "name": "request_id",
+          "type": "TEXT",
+          "nullable": false,
+          "primaryKey": false,
+          "primaryKeyPosition": null,
+          "defaultValue": null
+        },
+        {
+          "name": "message_id",
+          "type": "TEXT",
+          "nullable": false,
+          "primaryKey": false,
+          "primaryKeyPosition": null,
+          "defaultValue": null
+        },
+        {
+          "name": "received_at",
+          "type": "TEXT",
+          "nullable": false,
+          "primaryKey": false,
+          "primaryKeyPosition": null,
+          "defaultValue": null
+        }
+      ],
+      "primaryKey": [
+        {
+          "column": "receipt_id",
+          "position": 1
+        }
+      ],
+      "foreignKeys": [
+        {
+          "column": "request_id",
+          "table": "requests",
+          "referencedColumn": "request_id",
+          "constraint": 0,
+          "position": 0
+        }
+      ],
+      "modelEntity": "receipts"
+    },
+    {
+      "name": "configurations",
+      "kind": "table",
+      "description": "",
+      "rowCount": 1,
+      "columns": [
+        {
+          "name": "revision",
+          "type": "INTEGER",
+          "nullable": true,
+          "primaryKey": true,
+          "primaryKeyPosition": 1,
+          "defaultValue": null
+        },
+        {
+          "name": "published_at",
+          "type": "TEXT",
+          "nullable": false,
+          "primaryKey": false,
+          "primaryKeyPosition": null,
+          "defaultValue": null
+        }
+      ],
+      "primaryKey": [
+        {
+          "column": "revision",
+          "position": 1
+        }
+      ],
+      "foreignKeys": [],
+      "modelEntity": "configurations"
+    },
+    {
+      "name": "partners",
+      "kind": "table",
+      "description": "",
+      "rowCount": 2,
+      "columns": [
+        {
+          "name": "partner_id",
+          "type": "TEXT",
+          "nullable": true,
+          "primaryKey": true,
+          "primaryKeyPosition": 1,
+          "defaultValue": null
+        },
+        {
+          "name": "enabled",
+          "type": "INTEGER",
+          "nullable": false,
+          "primaryKey": false,
+          "primaryKeyPosition": null,
+          "defaultValue": null
+        }
+      ],
+      "primaryKey": [
+        {
+          "column": "partner_id",
+          "position": 1
+        }
+      ],
+      "foreignKeys": [],
+      "modelEntity": "partners"
+    },
+    {
+      "name": "routes",
+      "kind": "table",
+      "description": "",
+      "rowCount": 4,
+      "columns": [
+        {
+          "name": "route_id",
+          "type": "TEXT",
+          "nullable": true,
+          "primaryKey": true,
+          "primaryKeyPosition": 1,
+          "defaultValue": null
+        },
+        {
+          "name": "revision",
+          "type": "INTEGER",
+          "nullable": false,
+          "primaryKey": false,
+          "primaryKeyPosition": null,
+          "defaultValue": null
+        },
+        {
+          "name": "shipper_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "primaryKey": false,
+          "primaryKeyPosition": null,
+          "defaultValue": null
+        },
+        {
+          "name": "partner_id",
+          "type": "TEXT",
+          "nullable": false,
+          "primaryKey": false,
+          "primaryKeyPosition": null,
+          "defaultValue": null
+        },
+        {
+          "name": "valid_from",
+          "type": "TEXT",
+          "nullable": false,
+          "primaryKey": false,
+          "primaryKeyPosition": null,
+          "defaultValue": null
+        },
+        {
+          "name": "valid_until",
+          "type": "TEXT",
+          "nullable": true,
+          "primaryKey": false,
+          "primaryKeyPosition": null,
+          "defaultValue": null
+        }
+      ],
+      "primaryKey": [
+        {
+          "column": "route_id",
+          "position": 1
+        }
+      ],
+      "foreignKeys": [
+        {
+          "column": "partner_id",
+          "table": "partners",
+          "referencedColumn": "partner_id",
+          "constraint": 0,
+          "position": 0
+        },
+        {
+          "column": "revision",
+          "table": "configurations",
+          "referencedColumn": "revision",
+          "constraint": 1,
+          "position": 0
+        }
+      ],
+      "modelEntity": "routes"
+    },
+    {
+      "name": "attempts",
+      "kind": "table",
+      "description": "",
+      "rowCount": 8,
+      "columns": [
+        {
+          "name": "attempt_id",
+          "type": "TEXT",
+          "nullable": true,
+          "primaryKey": true,
+          "primaryKeyPosition": 1,
+          "defaultValue": null
+        },
+        {
+          "name": "request_id",
+          "type": "TEXT",
+          "nullable": false,
+          "primaryKey": false,
+          "primaryKeyPosition": null,
+          "defaultValue": null
+        },
+        {
+          "name": "attempt_no",
+          "type": "INTEGER",
+          "nullable": false,
+          "primaryKey": false,
+          "primaryKeyPosition": null,
+          "defaultValue": null
+        },
+        {
+          "name": "config_revision",
+          "type": "INTEGER",
+          "nullable": false,
+          "primaryKey": false,
+          "primaryKeyPosition": null,
+          "defaultValue": null
+        },
+        {
+          "name": "started_at",
+          "type": "TEXT",
+          "nullable": false,
+          "primaryKey": false,
+          "primaryKeyPosition": null,
+          "defaultValue": null
+        },
+        {
+          "name": "state",
+          "type": "TEXT",
+          "nullable": false,
+          "primaryKey": false,
+          "primaryKeyPosition": null,
+          "defaultValue": null
+        }
+      ],
+      "primaryKey": [
+        {
+          "column": "attempt_id",
+          "position": 1
+        }
+      ],
+      "foreignKeys": [
+        {
+          "column": "config_revision",
+          "table": "configurations",
+          "referencedColumn": "revision",
+          "constraint": 0,
+          "position": 0
+        },
+        {
+          "column": "request_id",
+          "table": "requests",
+          "referencedColumn": "request_id",
+          "constraint": 1,
+          "position": 0
+        }
+      ],
+      "modelEntity": "attempts"
+    },
+    {
+      "name": "events",
+      "kind": "table",
+      "description": "",
+      "rowCount": 29,
+      "columns": [
+        {
+          "name": "event_id",
+          "type": "TEXT",
+          "nullable": true,
+          "primaryKey": true,
+          "primaryKeyPosition": 1,
+          "defaultValue": null
+        },
+        {
+          "name": "attempt_id",
+          "type": "TEXT",
+          "nullable": false,
+          "primaryKey": false,
+          "primaryKeyPosition": null,
+          "defaultValue": null
+        },
+        {
+          "name": "sequence",
+          "type": "INTEGER",
+          "nullable": false,
+          "primaryKey": false,
+          "primaryKeyPosition": null,
+          "defaultValue": null
+        },
+        {
+          "name": "kind",
+          "type": "TEXT",
+          "nullable": false,
+          "primaryKey": false,
+          "primaryKeyPosition": null,
+          "defaultValue": null
+        },
+        {
+          "name": "occurred_at",
+          "type": "TEXT",
+          "nullable": false,
+          "primaryKey": false,
+          "primaryKeyPosition": null,
+          "defaultValue": null
+        },
+        {
+          "name": "clock_domain",
+          "type": "TEXT",
+          "nullable": false,
+          "primaryKey": false,
+          "primaryKeyPosition": null,
+          "defaultValue": null
+        },
+        {
+          "name": "precision_ms",
+          "type": "INTEGER",
+          "nullable": false,
+          "primaryKey": false,
+          "primaryKeyPosition": null,
+          "defaultValue": null
+        },
+        {
+          "name": "artifact",
+          "type": "TEXT",
+          "nullable": false,
+          "primaryKey": false,
+          "primaryKeyPosition": null,
+          "defaultValue": null
+        },
+        {
+          "name": "byte_start",
+          "type": "INTEGER",
+          "nullable": false,
+          "primaryKey": false,
+          "primaryKeyPosition": null,
+          "defaultValue": null
+        },
+        {
+          "name": "byte_end",
+          "type": "INTEGER",
+          "nullable": false,
+          "primaryKey": false,
+          "primaryKeyPosition": null,
+          "defaultValue": null
+        },
+        {
+          "name": "artifact_sha256",
+          "type": "TEXT",
+          "nullable": false,
+          "primaryKey": false,
+          "primaryKeyPosition": null,
+          "defaultValue": null
+        }
+      ],
+      "primaryKey": [
+        {
+          "column": "event_id",
+          "position": 1
+        }
+      ],
+      "foreignKeys": [
+        {
+          "column": "attempt_id",
+          "table": "attempts",
+          "referencedColumn": "attempt_id",
+          "constraint": 0,
+          "position": 0
+        }
+      ],
+      "modelEntity": "events"
+    },
+    {
+      "name": "assignments",
+      "kind": "table",
+      "description": "",
+      "rowCount": 1,
+      "columns": [
+        {
+          "name": "assignment_id",
+          "type": "TEXT",
+          "nullable": true,
+          "primaryKey": true,
+          "primaryKeyPosition": 1,
+          "defaultValue": null
+        },
+        {
+          "name": "attempt_id",
+          "type": "TEXT",
+          "nullable": false,
+          "primaryKey": false,
+          "primaryKeyPosition": null,
+          "defaultValue": null
+        },
+        {
+          "name": "partner_id",
+          "type": "TEXT",
+          "nullable": false,
+          "primaryKey": false,
+          "primaryKeyPosition": null,
+          "defaultValue": null
+        },
+        {
+          "name": "accepted_at",
+          "type": "TEXT",
+          "nullable": false,
+          "primaryKey": false,
+          "primaryKeyPosition": null,
+          "defaultValue": null
+        },
+        {
+          "name": "deduplication_key",
+          "type": "TEXT",
+          "nullable": false,
+          "primaryKey": false,
+          "primaryKeyPosition": null,
+          "defaultValue": null
+        }
+      ],
+      "primaryKey": [
+        {
+          "column": "assignment_id",
+          "position": 1
+        }
+      ],
+      "foreignKeys": [
+        {
+          "column": "partner_id",
+          "table": "partners",
+          "referencedColumn": "partner_id",
+          "constraint": 0,
+          "position": 0
+        },
+        {
+          "column": "attempt_id",
+          "table": "attempts",
+          "referencedColumn": "attempt_id",
+          "constraint": 1,
+          "position": 0
+        }
+      ],
+      "modelEntity": "assignments"
+    },
+    {
+      "name": "workspace_state",
+      "kind": "table",
+      "description": "",
+      "rowCount": 1,
+      "columns": [
+        {
+          "name": "generation",
+          "type": "TEXT",
+          "nullable": true,
+          "primaryKey": true,
+          "primaryKeyPosition": 1,
+          "defaultValue": null
+        },
+        {
+          "name": "current_config",
+          "type": "INTEGER",
+          "nullable": false,
+          "primaryKey": false,
+          "primaryKeyPosition": null,
+          "defaultValue": null
+        },
+        {
+          "name": "business_clock",
+          "type": "TEXT",
+          "nullable": false,
+          "primaryKey": false,
+          "primaryKeyPosition": null,
+          "defaultValue": null
+        }
+      ],
+      "primaryKey": [
+        {
+          "column": "generation",
+          "position": 1
+        }
+      ],
+      "foreignKeys": [],
+      "modelEntity": "workspace_state"
+    }
+  ]
+}

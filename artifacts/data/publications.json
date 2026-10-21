@@ -1,0 +1,10 @@
+[
+  {"publication_id": "publication-11038","request_id": "request-11038","message_id": "message-11038","acknowledged_at": "2018-04-30T09:00:01Z"},
+  {"publication_id": "publication-11045","request_id": "request-11045","message_id": "message-11045","acknowledged_at": "2018-05-20T09:00:01Z"},
+  {"publication_id": "publication-11062","request_id": "request-11062","message_id": "message-11062","acknowledged_at": "2018-05-20T09:00:01Z"},
+  {"publication_id": "publication-90001","request_id": "request-90001","message_id": "message-90001","acknowledged_at": "2018-05-20T09:00:01Z"},
+  {"publication_id": "publication-90002","request_id": "request-90002","message_id": "message-90002","acknowledged_at": "2018-05-20T09:00:01Z"},
+  {"publication_id": "publication-90003","request_id": "request-90003","message_id": "message-90003","acknowledged_at": "2018-05-20T09:00:01Z"},
+  {"publication_id": "publication-90004","request_id": "request-90004","message_id": "message-90004","acknowledged_at": "2018-05-20T09:00:01Z"},
+  {"publication_id": "publication-90005","request_id": "request-90005","message_id": "message-90005","acknowledged_at": "2018-05-20T09:00:01Z"}
+]
