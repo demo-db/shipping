@@ -15,8 +15,8 @@
   },
   "deployment": {
     "engine": "openvaultdb-go",
-    "url": "https://cloud.openvaultdb.com/ovdb/db/shipping",
-    "discovery": "https://shipping.demodb.dev/.well-known/openvaultdb"
+    "url": "https://cloud.openvaultdb.com/ovdb/dbs/shipping",
+    "discovery": "https://demodb.dev/.well-known/openvaultdb"
   },
   "model": {
     "id": "modelspec://github.com/demo-db/shipping/0.1.0",
