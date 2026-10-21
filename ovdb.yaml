@@ -2,7 +2,7 @@
   "format": "ovdb-manifest/draft-1",
   "id": "shipping",
   "title": "Shipping",
-  "description": "Synthetic Northwind companion: request receipts, effective routes, attempts and assignments, including healthy11038, blocked11045 and pending11062.",
+  "description": "Synthetic Northwind companion with healthy11038 and blocked baseline requests11045 and11062; future recovery examples remain separate, with the11062 replay pending.",
   "homepage": "https://shipping.demodb.dev/",
   "url": "https://demodb.dev/shipping/",
   "deployment": {

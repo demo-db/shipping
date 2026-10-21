@@ -15,6 +15,7 @@ EXPECTED_SHA256 = "73f0d871607ee5b24de68b5398c25806f556a3126a31e1865fee79b288197
 EXPECTED_SIZE = 110592
 EXPECTED_LICENSE_SHA256 = "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499"
 EXPECTED_MANIFEST_SHA256 = "fd9c22c47ea5ab589e4e0b00a6bb2b86de6046a678d078684f7feb8422878ab1"
+EXPECTED_INTRODUCED_REVISION = "38a51dda39d988f2d2bcf23703bd1a969d49f4a3"
 EXPECTED_OBJECTS = {
     "assignments",
     "attempts",
@@ -37,6 +38,11 @@ def require(condition: bool, message: str) -> None:
 
 
 def main() -> None:
+    provider = json.loads((ROOT / "manifest.json").read_text(encoding="utf-8"))
+    require(
+        provider["source"]["introducedRevision"] == EXPECTED_INTRODUCED_REVISION,
+        "fixture introduction revision differs",
+    )
     license_digest = hashlib.sha256((ROOT / "LICENSE").read_bytes()).hexdigest()
     require(license_digest == EXPECTED_LICENSE_SHA256, f"unexpected CC0 license sha256: {license_digest}")
     manifest_digest = hashlib.sha256(FIXTURE_MANIFEST.read_bytes()).hexdigest()

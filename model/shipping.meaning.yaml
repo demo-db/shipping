@@ -2,7 +2,7 @@
   "format": "meaning/draft-1",
   "id": "shipping",
   "name": "Shipping",
-  "description": "Synthetic Northwind companion: request receipts, effective routes, attempts and assignments, including healthy11038, blocked11045 and pending11062.",
+  "description": "Synthetic Northwind companion with healthy11038 and blocked baseline requests11045 and11062; future recovery examples remain separate, with the11062 replay pending.",
   "license": "CC0-1.0",
   "models": {
     "shipping": "shipping.modelspec.hcl"
