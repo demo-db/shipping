@@ -5,13 +5,13 @@ routing, receipt, attempt, and event histories. The fixture includes healthy
 order `11038` and blocked baseline orders `11045` and `11062`; the latter two
 have separately stored future recovery examples, with the `11062` replay still
 pending. It is served read-only through OpenVaultDB at
-<https://demodb.dev/ovdb/v1/databases/shipping>
+<https://ovdb.demodb.dev/v1/databases/shipping>
 (`capabilities.ovdb.deploymentVerified` in `manifest.json`; the endpoint
 answered with its schema on 2026-10-22).
 
 The checked-in SQLite file is copied byte-for-byte from the public
 `datatug/datatug-demo-project` fixture at revision
-`533aaabc08e340f0cdddb5189ea543b010276a45`. It is CC0-1.0 licensed and has
+`3f8a040fec8f807175138edd30dc3041bd7f55b8`. It is CC0-1.0 licensed and has
 SHA-256 `73f0d871607ee5b24de68b5398c25806f556a3126a31e1865fee79b2881977e0`.
 The fixture was introduced at revision
 `38a51dda39d988f2d2bcf23703bd1a969d49f4a3`; the source bytes are identical at
