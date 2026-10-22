@@ -90,12 +90,12 @@
       "bytes": 110592
     },
     "manifest.json": {
-      "sha256": "e0a2dcfbf7ae271783d4454aac069d58417268fff642a4eb5692131793e54d21",
-      "bytes": 3064
+      "sha256": "8ce51fd281b125ba0f5c0cb3c482d89fec29efd83267db66b3a3a9ecc90b735f",
+      "bytes": 3063
     },
     "metadata/contract.json": {
-      "sha256": "dc65dc97d01e8e5ed0afbc959e6a98bc04a2469df6cf9db43c4cc2c2be34234d",
-      "bytes": 61594
+      "sha256": "2e999268b742987804c2c5af44f9b0f64e8900a32e96acf53bb32a0607907fdd",
+      "bytes": 61593
     },
     "metadata/schema.json": {
       "sha256": "3baf53df4171008d0972c49a145b61145e3a1caeba75732d828d6c1a6b3d0e04",
