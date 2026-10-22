@@ -11,7 +11,7 @@ answered with its schema on 2026-10-22).
 
 The checked-in SQLite file is copied byte-for-byte from the public
 `datatug/datatug-demo-project` fixture at revision
-`3f8a040fec8f807175138edd30dc3041bd7f55b8`. It is CC0-1.0 licensed and has
+`489f385922b206587d8fa975c8be837e07982727`. It is CC0-1.0 licensed and has
 SHA-256 `73f0d871607ee5b24de68b5398c25806f556a3126a31e1865fee79b2881977e0`.
 The fixture was introduced at revision
 `38a51dda39d988f2d2bcf23703bd1a969d49f4a3`; the source bytes are identical at
