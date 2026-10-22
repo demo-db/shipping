@@ -34,7 +34,7 @@
   },
   "provenance": {
     "repository": "https://github.com/datatug/datatug-demo-project",
-    "revision": "489f385922b206587d8fa975c8be837e07982727",
+    "revision": "8c17604ee3f971ea70b3aa9490176e798e267d3a",
     "path": "demo-project-1/fixtures/shipping/base.sqlite",
     "sha256": "73f0d871607ee5b24de68b5398c25806f556a3126a31e1865fee79b2881977e0",
     "license": "CC0-1.0",
