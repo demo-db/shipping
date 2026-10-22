@@ -90,15 +90,15 @@
       "bytes": 110592
     },
     "manifest.json": {
-      "sha256": "8ce51fd281b125ba0f5c0cb3c482d89fec29efd83267db66b3a3a9ecc90b735f",
+      "sha256": "5ef4a55fd30fcaaf94648b6fba443271cbc8155cbb6aadeb41ba054b29d44292",
       "bytes": 3063
     },
     "metadata/contract.json": {
-      "sha256": "2e999268b742987804c2c5af44f9b0f64e8900a32e96acf53bb32a0607907fdd",
+      "sha256": "5b2c3853498719a123eab47204356cb8441d4f8c809151f9b4483f084f656775",
       "bytes": 61593
     },
     "metadata/schema.json": {
-      "sha256": "3baf53df4171008d0972c49a145b61145e3a1caeba75732d828d6c1a6b3d0e04",
+      "sha256": "b9d7f7f4c4b04339822145ee104752d418b7bd5a3137f93e34f0d60d6f2a3c87",
       "bytes": 51785
     },
     "model/shipping.meaning.yaml": {
@@ -114,7 +114,7 @@
       "bytes": 5245
     },
     "ovdb-database.json": {
-      "sha256": "d9ef83c2c8e2fd2367a3201787511698a7fd411a36d2a2653c36ba5c1d292678",
+      "sha256": "8636b6c7c84b38914fa77fe1a94915ce337069427a3ca87373b096ea5b9c5ee5",
       "bytes": 16892
     },
     "ovdb.yaml": {
