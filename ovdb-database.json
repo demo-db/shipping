@@ -49,7 +49,7 @@
     {
       "name": "requests",
       "kind": "table",
-      "description": "A synthetic instruction to arrange shipping for a Northwind order. A request can be published and received without a carrier assignment; it is not proof of a shipment or delivery.",
+      "description": "A synthetic instruction to arrange shipping for a scenario order. Main examples reuse Northwind identifiers; additional synthetic control orders need not exist in Northwind. Publication and receipt do not prove a carrier assignment, shipment or delivery.",
       "rowCount": 8,
       "columns": [
         {
