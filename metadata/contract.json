@@ -78,7 +78,7 @@
             "id": "shipping-request",
             "kind": "entity",
             "label": "Shipping request",
-            "description": "A synthetic instruction to arrange shipping for a Northwind order. A request can be published and received without a carrier assignment; it is not proof of a shipment or delivery.",
+            "description": "A synthetic instruction to arrange shipping for a scenario order. Main examples reuse Northwind identifiers; additional synthetic control orders need not exist in Northwind. Publication and receipt do not prove a carrier assignment, shipment or delivery.",
             "bindings": [
               {
                 "recordset": "requests",
@@ -292,8 +292,8 @@
           {
             "id": "order-reference",
             "kind": "attribute",
-            "label": "Northwind order reference",
-            "description": "The Northwind order identifier to which the shipping request belongs. This is a declared cross-dataset reference, not a SQLite foreign key or an automatic join.",
+            "label": "Scenario order reference",
+            "description": "The scenario order identifier to which the request belongs. Orders 11038, 11045 and 11062 reuse Northwind order identifiers; 90001–90005 are synthetic controls that need not resolve to Northwind rows. This is a declared semantic reference, not a SQLite foreign key or automatic join.",
             "bindings": [
               {
                 "recordset": "requests",
@@ -408,7 +408,7 @@
     },
     "dataFile": "data-source/base.sqlite",
     "tableDescriptions": {
-      "requests": "A synthetic instruction to arrange shipping for a Northwind order. A request can be published and received without a carrier assignment; it is not proof of a shipment or delivery.",
+      "requests": "A synthetic instruction to arrange shipping for a scenario order. Main examples reuse Northwind identifiers; additional synthetic control orders need not exist in Northwind. Publication and receipt do not prove a carrier assignment, shipment or delivery.",
       "attempts": "One numbered processing attempt for a shipping request using a pinned routing configuration. The baseline contains accepted and blocked attempts; future replay examples are stored separately.",
       "partners": "A synthetic routing destination identified by partner_id, with an enabled flag. It represents the training fixture's partner configuration, not evidence of a real carrier call.",
       "assignments": "A synthetic acceptance of an attempt by a carrier partner, protected by a deduplication key. Assignment acceptance does not establish physical dispatch or delivery.",
@@ -1498,7 +1498,7 @@
         "modelEntity": "requests",
         "modelRecordset": null,
         "kind": "table",
-        "description": "A synthetic instruction to arrange shipping for a Northwind order. A request can be published and received without a carrier assignment; it is not proof of a shipment or delivery.",
+        "description": "A synthetic instruction to arrange shipping for a scenario order. Main examples reuse Northwind identifiers; additional synthetic control orders need not exist in Northwind. Publication and receipt do not prove a carrier assignment, shipment or delivery.",
         "columns": [
           {
             "name": "request_id",

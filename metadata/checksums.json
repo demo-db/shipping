@@ -90,20 +90,20 @@
       "bytes": 110592
     },
     "manifest.json": {
-      "sha256": "11dd6efd4361c1a8a1ff5f8638362cab88aef45a8fb95c3de81c7b9f00215637",
-      "bytes": 15856
+      "sha256": "6d619bcffdee364335ff9a9b5f997aa8f2645845aeaff4777a55cd0beb3a7fff",
+      "bytes": 16133
     },
     "metadata/contract.json": {
-      "sha256": "1a57223c06cb42f70b8a8e7668ad8df7c79be9f0f514f8489599df80f0d18145",
-      "bytes": 76878
+      "sha256": "eb296ddb128eba261a1946098b16f980bbeb693523312be10b2aa648192c8961",
+      "bytes": 77227
     },
     "metadata/schema.json": {
-      "sha256": "7a72486a94f85fa14853ab114c9350bac2ead02e910f5f12e6ae52febba954da",
-      "bytes": 53629
+      "sha256": "84d87276d35d4c8cb9e2e8416e82f720b5dc046e17d6b753e71a05ca79edf87f",
+      "bytes": 53704
     },
     "model/shipping.meaning.yaml": {
-      "sha256": "c6a9820db9af7b4b12768e2ab4e3181753c2bc0ea82e05b255aec1d59bb2846d",
-      "bytes": 10841
+      "sha256": "4bbed801e44d6d61a91aa92e3911ccde8bd0b1be4eeda410e322994c9d1574d2",
+      "bytes": 11040
     },
     "model/shipping.modelspec.hcl": {
       "sha256": "6c19adfa427d6ae1f22978490b658d3fd66d3b0ce81383a15060f2d2a9acb130",
@@ -114,8 +114,8 @@
       "bytes": 5245
     },
     "ovdb-database.json": {
-      "sha256": "042d3de1c57b7b0990693cc24b608aaf12d8920caf6f72212dacb74fe17a8f78",
-      "bytes": 18518
+      "sha256": "d3f71dd7d01f5836c89353fc5b7999f31ff3315a0cf1af3219ec2ef47e8e0c0f",
+      "bytes": 18593
     },
     "ovdb.yaml": {
       "sha256": "05205ca940cb841d7ddb4ab544a702211b6adf17e1aeda28c568d769070fc35e",

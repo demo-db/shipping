@@ -11,7 +11,7 @@
     {
       "id": "shipping-request",
       "kind": "entity",
-      "description": "A synthetic instruction to arrange shipping for a Northwind order. A request can be published and received without a carrier assignment; it is not proof of a shipment or delivery.",
+      "description": "A synthetic instruction to arrange shipping for a scenario order. Main examples reuse Northwind identifiers; additional synthetic control orders need not exist in Northwind. Publication and receipt do not prove a carrier assignment, shipment or delivery.",
       "labels": {
         "en": "Shipping request"
       },
@@ -246,9 +246,9 @@
     {
       "id": "order-reference",
       "kind": "attribute",
-      "description": "The Northwind order identifier to which the shipping request belongs. This is a declared cross-dataset reference, not a SQLite foreign key or an automatic join.",
+      "description": "The scenario order identifier to which the request belongs. Orders 11038, 11045 and 11062 reuse Northwind order identifiers; 90001–90005 are synthetic controls that need not resolve to Northwind rows. This is a declared semantic reference, not a SQLite foreign key or automatic join.",
       "labels": {
-        "en": "Northwind order reference"
+        "en": "Scenario order reference"
       },
       "values-of": "meaning://github.com/meaninggraph/core/order?ref=982916d73f0a35ff2558b0062f58aa3ac4f24d97",
       "of": "shipping-request",
