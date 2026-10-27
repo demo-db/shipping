@@ -49,7 +49,7 @@
     {
       "name": "requests",
       "kind": "table",
-      "description": "",
+      "description": "A synthetic instruction to arrange shipping for a Northwind order. A request can be published and received without a carrier assignment; it is not proof of a shipment or delivery.",
       "rowCount": 8,
       "columns": [
         {
@@ -113,7 +113,7 @@
     {
       "name": "publications",
       "kind": "table",
-      "description": "",
+      "description": "Acknowledgement that a request message was published. Publication acknowledgement alone does not prove receipt, carrier acceptance, or delivery.",
       "rowCount": 8,
       "columns": [
         {
@@ -169,7 +169,7 @@
     {
       "name": "receipts",
       "kind": "table",
-      "description": "",
+      "description": "Observation that a request message was received by the synthetic shipping process. Receipt alone does not prove successful routing or a carrier assignment.",
       "rowCount": 7,
       "columns": [
         {
@@ -225,7 +225,7 @@
     {
       "name": "configurations",
       "kind": "table",
-      "description": "",
+      "description": "An immutable numbered configuration revision used when an attempt starts and by the routes published for that revision.",
       "rowCount": 1,
       "columns": [
         {
@@ -257,7 +257,7 @@
     {
       "name": "partners",
       "kind": "table",
-      "description": "",
+      "description": "A synthetic routing destination identified by partner_id, with an enabled flag. It represents the training fixture's partner configuration, not evidence of a real carrier call.",
       "rowCount": 2,
       "columns": [
         {
@@ -289,7 +289,7 @@
     {
       "name": "routes",
       "kind": "table",
-      "description": "",
+      "description": "A time-bounded mapping from a shipper identifier to a partner within one routing configuration. Overlapping or expired routes are retained for diagnostic examples.",
       "rowCount": 4,
       "columns": [
         {
@@ -368,7 +368,7 @@
     {
       "name": "attempts",
       "kind": "table",
-      "description": "",
+      "description": "One numbered processing attempt for a shipping request using a pinned routing configuration. The baseline contains accepted and blocked attempts; future replay examples are stored separately.",
       "rowCount": 8,
       "columns": [
         {
@@ -447,7 +447,7 @@
     {
       "name": "events",
       "kind": "table",
-      "description": "",
+      "description": "An indexed observation within a shipping attempt, with a sequence, clock domain, timestamp precision and a byte-range pointer to its immutable source log artifact.",
       "rowCount": 29,
       "columns": [
         {
@@ -559,7 +559,7 @@
     {
       "name": "assignments",
       "kind": "table",
-      "description": "",
+      "description": "A synthetic acceptance of an attempt by a carrier partner, protected by a deduplication key. Assignment acceptance does not establish physical dispatch or delivery.",
       "rowCount": 1,
       "columns": [
         {
@@ -630,7 +630,7 @@
     {
       "name": "workspace_state",
       "kind": "table",
-      "description": "",
+      "description": "The synthetic fixture generation, active configuration and business clock used to evaluate current routes. The business clock is scenario state, not the current wall clock.",
       "rowCount": 1,
       "columns": [
         {

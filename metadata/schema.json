@@ -22,7 +22,7 @@
       "modelEntity": "assignments",
       "modelRecordset": null,
       "kind": "table",
-      "description": "",
+      "description": "A synthetic acceptance of an attempt by a carrier partner, protected by a deduplication key. Assignment acceptance does not establish physical dispatch or delivery.",
       "columns": [
         {
           "name": "assignment_id",
@@ -157,7 +157,7 @@
       "modelEntity": "attempts",
       "modelRecordset": null,
       "kind": "table",
-      "description": "",
+      "description": "One numbered processing attempt for a shipping request using a pinned routing configuration. The baseline contains accepted and blocked attempts; future replay examples are stored separately.",
       "columns": [
         {
           "name": "attempt_id",
@@ -366,7 +366,7 @@
       "modelEntity": "configurations",
       "modelRecordset": null,
       "kind": "table",
-      "description": "",
+      "description": "An immutable numbered configuration revision used when an attempt starts and by the routes published for that revision.",
       "columns": [
         {
           "name": "revision",
@@ -411,7 +411,7 @@
       "modelEntity": "events",
       "modelRecordset": null,
       "kind": "table",
-      "description": "",
+      "description": "An indexed observation within a shipping attempt, with a sequence, clock domain, timestamp precision and a byte-range pointer to its immutable source log artifact.",
       "columns": [
         {
           "name": "event_id",
@@ -747,7 +747,7 @@
       "modelEntity": "partners",
       "modelRecordset": null,
       "kind": "table",
-      "description": "",
+      "description": "A synthetic routing destination identified by partner_id, with an enabled flag. It represents the training fixture's partner configuration, not evidence of a real carrier call.",
       "columns": [
         {
           "name": "partner_id",
@@ -812,7 +812,7 @@
       "modelEntity": "publications",
       "modelRecordset": null,
       "kind": "table",
-      "description": "",
+      "description": "Acknowledgement that a request message was published. Publication acknowledgement alone does not prove receipt, carrier acceptance, or delivery.",
       "columns": [
         {
           "name": "publication_id",
@@ -946,7 +946,7 @@
       "modelEntity": "receipts",
       "modelRecordset": null,
       "kind": "table",
-      "description": "",
+      "description": "Observation that a request message was received by the synthetic shipping process. Receipt alone does not prove successful routing or a carrier assignment.",
       "columns": [
         {
           "name": "receipt_id",
@@ -1074,7 +1074,7 @@
       "modelEntity": "requests",
       "modelRecordset": null,
       "kind": "table",
-      "description": "",
+      "description": "A synthetic instruction to arrange shipping for a Northwind order. A request can be published and received without a carrier assignment; it is not proof of a shipment or delivery.",
       "columns": [
         {
           "name": "request_id",
@@ -1276,7 +1276,7 @@
       "modelEntity": "routes",
       "modelRecordset": null,
       "kind": "table",
-      "description": "",
+      "description": "A time-bounded mapping from a shipper identifier to a partner within one routing configuration. Overlapping or expired routes are retained for diagnostic examples.",
       "columns": [
         {
           "name": "route_id",
@@ -1422,7 +1422,7 @@
       "modelEntity": "workspace_state",
       "modelRecordset": null,
       "kind": "table",
-      "description": "",
+      "description": "The synthetic fixture generation, active configuration and business clock used to evaluate current routes. The business clock is scenario state, not the current wall clock.",
       "columns": [
         {
           "name": "generation",
@@ -1493,7 +1493,7 @@
       "modelEntity": null,
       "modelRecordset": null,
       "kind": "view",
-      "description": "",
+      "description": "Routes evaluated at the workspace business clock and current configuration; missing or ambiguous matches remain visible.",
       "columns": [
         {
           "name": "request_id",
@@ -1671,7 +1671,7 @@
       "modelEntity": null,
       "modelRecordset": null,
       "kind": "view",
-      "description": "",
+      "description": "The highest numbered recorded attempt for each request; it does not import future replay examples.",
       "columns": [
         {
           "name": "attempt_id",

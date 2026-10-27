@@ -73,7 +73,317 @@
           "address": "meaning://github.com/meaninggraph/core",
           "revision": "982916d73f0a35ff2558b0062f58aa3ac4f24d97"
         },
-        "concepts": []
+        "concepts": [
+          {
+            "id": "shipping-request",
+            "kind": "entity",
+            "label": "Shipping request",
+            "description": "A synthetic instruction to arrange shipping for a Northwind order. A request can be published and received without a carrier assignment; it is not proof of a shipment or delivery.",
+            "bindings": [
+              {
+                "recordset": "requests",
+                "role": "entity"
+              },
+              {
+                "recordset": "requests",
+                "role": "identifier",
+                "property": "request_id"
+              },
+              {
+                "recordset": "attempts",
+                "role": "foreign-key",
+                "property": "request_id"
+              },
+              {
+                "recordset": "publications",
+                "role": "foreign-key",
+                "property": "request_id"
+              },
+              {
+                "recordset": "receipts",
+                "role": "foreign-key",
+                "property": "request_id"
+              }
+            ]
+          },
+          {
+            "id": "shipping-attempt",
+            "kind": "entity",
+            "label": "Shipping attempt",
+            "description": "One numbered processing attempt for a shipping request using a pinned routing configuration. The baseline contains accepted and blocked attempts; future replay examples are stored separately.",
+            "bindings": [
+              {
+                "recordset": "attempts",
+                "role": "entity"
+              },
+              {
+                "recordset": "attempts",
+                "role": "identifier",
+                "property": "attempt_id"
+              },
+              {
+                "recordset": "events",
+                "role": "foreign-key",
+                "property": "attempt_id"
+              },
+              {
+                "recordset": "assignments",
+                "role": "foreign-key",
+                "property": "attempt_id"
+              }
+            ]
+          },
+          {
+            "id": "carrier-partner",
+            "kind": "entity",
+            "label": "Carrier partner",
+            "description": "A synthetic routing destination identified by partner_id, with an enabled flag. It represents the training fixture's partner configuration, not evidence of a real carrier call.",
+            "bindings": [
+              {
+                "recordset": "partners",
+                "role": "entity"
+              },
+              {
+                "recordset": "partners",
+                "role": "identifier",
+                "property": "partner_id"
+              },
+              {
+                "recordset": "routes",
+                "role": "foreign-key",
+                "property": "partner_id"
+              },
+              {
+                "recordset": "assignments",
+                "role": "foreign-key",
+                "property": "partner_id"
+              }
+            ]
+          },
+          {
+            "id": "carrier-assignment",
+            "kind": "entity",
+            "label": "Carrier assignment",
+            "description": "A synthetic acceptance of an attempt by a carrier partner, protected by a deduplication key. Assignment acceptance does not establish physical dispatch or delivery.",
+            "bindings": [
+              {
+                "recordset": "assignments",
+                "role": "entity"
+              },
+              {
+                "recordset": "assignments",
+                "role": "identifier",
+                "property": "assignment_id"
+              }
+            ]
+          },
+          {
+            "id": "routing-configuration",
+            "kind": "entity",
+            "label": "Routing configuration",
+            "description": "An immutable numbered configuration revision used when an attempt starts and by the routes published for that revision.",
+            "bindings": [
+              {
+                "recordset": "configurations",
+                "role": "entity"
+              },
+              {
+                "recordset": "configurations",
+                "role": "identifier",
+                "property": "revision"
+              },
+              {
+                "recordset": "attempts",
+                "role": "foreign-key",
+                "property": "config_revision"
+              },
+              {
+                "recordset": "routes",
+                "role": "foreign-key",
+                "property": "revision"
+              }
+            ]
+          },
+          {
+            "id": "shipping-route",
+            "kind": "entity",
+            "label": "Shipping route",
+            "description": "A time-bounded mapping from a shipper identifier to a partner within one routing configuration. Overlapping or expired routes are retained for diagnostic examples.",
+            "bindings": [
+              {
+                "recordset": "routes",
+                "role": "entity"
+              },
+              {
+                "recordset": "routes",
+                "role": "identifier",
+                "property": "route_id"
+              }
+            ]
+          },
+          {
+            "id": "message-publication",
+            "kind": "entity",
+            "label": "Message publication",
+            "description": "Acknowledgement that a request message was published. Publication acknowledgement alone does not prove receipt, carrier acceptance, or delivery.",
+            "bindings": [
+              {
+                "recordset": "publications",
+                "role": "entity"
+              },
+              {
+                "recordset": "publications",
+                "role": "identifier",
+                "property": "publication_id"
+              }
+            ]
+          },
+          {
+            "id": "message-receipt",
+            "kind": "entity",
+            "label": "Message receipt",
+            "description": "Observation that a request message was received by the synthetic shipping process. Receipt alone does not prove successful routing or a carrier assignment.",
+            "bindings": [
+              {
+                "recordset": "receipts",
+                "role": "entity"
+              },
+              {
+                "recordset": "receipts",
+                "role": "identifier",
+                "property": "receipt_id"
+              }
+            ]
+          },
+          {
+            "id": "shipping-event",
+            "kind": "entity",
+            "label": "Shipping event",
+            "description": "An indexed observation within a shipping attempt, with a sequence, clock domain, timestamp precision and a byte-range pointer to its immutable source log artifact.",
+            "bindings": [
+              {
+                "recordset": "events",
+                "role": "entity"
+              },
+              {
+                "recordset": "events",
+                "role": "identifier",
+                "property": "event_id"
+              }
+            ]
+          },
+          {
+            "id": "workspace-snapshot",
+            "kind": "entity",
+            "label": "Workspace snapshot",
+            "description": "The synthetic fixture generation, active configuration and business clock used to evaluate current routes. The business clock is scenario state, not the current wall clock.",
+            "bindings": [
+              {
+                "recordset": "workspace_state",
+                "role": "entity"
+              },
+              {
+                "recordset": "workspace_state",
+                "role": "identifier",
+                "property": "generation"
+              }
+            ]
+          },
+          {
+            "id": "order-reference",
+            "kind": "attribute",
+            "label": "Northwind order reference",
+            "description": "The Northwind order identifier to which the shipping request belongs. This is a declared cross-dataset reference, not a SQLite foreign key or an automatic join.",
+            "bindings": [
+              {
+                "recordset": "requests",
+                "role": "value",
+                "property": "order_id"
+              }
+            ],
+            "of": "shipping-request",
+            "valuesOf": "meaning://github.com/meaninggraph/core/order?ref=982916d73f0a35ff2558b0062f58aa3ac4f24d97"
+          },
+          {
+            "id": "attempt-state",
+            "kind": "attribute",
+            "label": "Attempt state",
+            "description": "The recorded processing state of an attempt. A blocked attempt is not an accepted carrier assignment; the state describes only this synthetic processing attempt.",
+            "bindings": [
+              {
+                "recordset": "attempts",
+                "role": "value",
+                "property": "state"
+              }
+            ],
+            "of": "shipping-attempt"
+          },
+          {
+            "id": "message-id",
+            "kind": "attribute",
+            "label": "Message identifier",
+            "description": "The same request message identifier carried through request creation, publication and receipt. Sharing it correlates observations; it does not establish completion.",
+            "bindings": [
+              {
+                "recordset": "requests",
+                "role": "value",
+                "property": "message_id"
+              },
+              {
+                "recordset": "publications",
+                "role": "value",
+                "property": "message_id"
+              },
+              {
+                "recordset": "receipts",
+                "role": "value",
+                "property": "message_id"
+              }
+            ]
+          },
+          {
+            "id": "correlation-id",
+            "kind": "attribute",
+            "label": "Correlation identifier",
+            "description": "A scenario correlation identifier used to relate shipping requests to synthetic carrier-gateway log entries.",
+            "bindings": [
+              {
+                "recordset": "requests",
+                "role": "value",
+                "property": "correlation_id"
+              }
+            ],
+            "of": "shipping-request"
+          },
+          {
+            "id": "event-time",
+            "kind": "attribute",
+            "label": "Event time",
+            "description": "The recorded event timestamp, interpreted with clock_domain and precision_ms. Time values from different clock domains must not be assumed directly comparable.",
+            "bindings": [
+              {
+                "recordset": "events",
+                "role": "value",
+                "property": "occurred_at"
+              }
+            ],
+            "of": "shipping-event"
+          },
+          {
+            "id": "clock-domain",
+            "kind": "attribute",
+            "label": "Clock domain",
+            "description": "The clock domain in which an event timestamp was recorded; precision_ms declares its resolution.",
+            "bindings": [
+              {
+                "recordset": "events",
+                "role": "value",
+                "property": "clock_domain"
+              }
+            ],
+            "of": "shipping-event"
+          }
+        ]
       },
       "ovdb": {
         "query": true,
@@ -96,7 +406,21 @@
         ]
       }
     },
-    "dataFile": "data-source/base.sqlite"
+    "dataFile": "data-source/base.sqlite",
+    "tableDescriptions": {
+      "requests": "A synthetic instruction to arrange shipping for a Northwind order. A request can be published and received without a carrier assignment; it is not proof of a shipment or delivery.",
+      "attempts": "One numbered processing attempt for a shipping request using a pinned routing configuration. The baseline contains accepted and blocked attempts; future replay examples are stored separately.",
+      "partners": "A synthetic routing destination identified by partner_id, with an enabled flag. It represents the training fixture's partner configuration, not evidence of a real carrier call.",
+      "assignments": "A synthetic acceptance of an attempt by a carrier partner, protected by a deduplication key. Assignment acceptance does not establish physical dispatch or delivery.",
+      "configurations": "An immutable numbered configuration revision used when an attempt starts and by the routes published for that revision.",
+      "routes": "A time-bounded mapping from a shipper identifier to a partner within one routing configuration. Overlapping or expired routes are retained for diagnostic examples.",
+      "publications": "Acknowledgement that a request message was published. Publication acknowledgement alone does not prove receipt, carrier acceptance, or delivery.",
+      "receipts": "Observation that a request message was received by the synthetic shipping process. Receipt alone does not prove successful routing or a carrier assignment.",
+      "events": "An indexed observation within a shipping attempt, with a sequence, clock domain, timestamp precision and a byte-range pointer to its immutable source log artifact.",
+      "workspace_state": "The synthetic fixture generation, active configuration and business clock used to evaluate current routes. The business clock is scenario state, not the current wall clock.",
+      "current_routes": "Routes evaluated at the workspace business clock and current configuration; missing or ambiguous matches remain visible.",
+      "latest_attempts": "The highest numbered recorded attempt for each request; it does not import future replay examples."
+    }
   },
   "schema": {
     "contractVersion": 1,
@@ -122,7 +446,7 @@
         "modelEntity": "assignments",
         "modelRecordset": null,
         "kind": "table",
-        "description": "",
+        "description": "A synthetic acceptance of an attempt by a carrier partner, protected by a deduplication key. Assignment acceptance does not establish physical dispatch or delivery.",
         "columns": [
           {
             "name": "assignment_id",
@@ -257,7 +581,7 @@
         "modelEntity": "attempts",
         "modelRecordset": null,
         "kind": "table",
-        "description": "",
+        "description": "One numbered processing attempt for a shipping request using a pinned routing configuration. The baseline contains accepted and blocked attempts; future replay examples are stored separately.",
         "columns": [
           {
             "name": "attempt_id",
@@ -466,7 +790,7 @@
         "modelEntity": "configurations",
         "modelRecordset": null,
         "kind": "table",
-        "description": "",
+        "description": "An immutable numbered configuration revision used when an attempt starts and by the routes published for that revision.",
         "columns": [
           {
             "name": "revision",
@@ -511,7 +835,7 @@
         "modelEntity": "events",
         "modelRecordset": null,
         "kind": "table",
-        "description": "",
+        "description": "An indexed observation within a shipping attempt, with a sequence, clock domain, timestamp precision and a byte-range pointer to its immutable source log artifact.",
         "columns": [
           {
             "name": "event_id",
@@ -847,7 +1171,7 @@
         "modelEntity": "partners",
         "modelRecordset": null,
         "kind": "table",
-        "description": "",
+        "description": "A synthetic routing destination identified by partner_id, with an enabled flag. It represents the training fixture's partner configuration, not evidence of a real carrier call.",
         "columns": [
           {
             "name": "partner_id",
@@ -912,7 +1236,7 @@
         "modelEntity": "publications",
         "modelRecordset": null,
         "kind": "table",
-        "description": "",
+        "description": "Acknowledgement that a request message was published. Publication acknowledgement alone does not prove receipt, carrier acceptance, or delivery.",
         "columns": [
           {
             "name": "publication_id",
@@ -1046,7 +1370,7 @@
         "modelEntity": "receipts",
         "modelRecordset": null,
         "kind": "table",
-        "description": "",
+        "description": "Observation that a request message was received by the synthetic shipping process. Receipt alone does not prove successful routing or a carrier assignment.",
         "columns": [
           {
             "name": "receipt_id",
@@ -1174,7 +1498,7 @@
         "modelEntity": "requests",
         "modelRecordset": null,
         "kind": "table",
-        "description": "",
+        "description": "A synthetic instruction to arrange shipping for a Northwind order. A request can be published and received without a carrier assignment; it is not proof of a shipment or delivery.",
         "columns": [
           {
             "name": "request_id",
@@ -1376,7 +1700,7 @@
         "modelEntity": "routes",
         "modelRecordset": null,
         "kind": "table",
-        "description": "",
+        "description": "A time-bounded mapping from a shipper identifier to a partner within one routing configuration. Overlapping or expired routes are retained for diagnostic examples.",
         "columns": [
           {
             "name": "route_id",
@@ -1522,7 +1846,7 @@
         "modelEntity": "workspace_state",
         "modelRecordset": null,
         "kind": "table",
-        "description": "",
+        "description": "The synthetic fixture generation, active configuration and business clock used to evaluate current routes. The business clock is scenario state, not the current wall clock.",
         "columns": [
           {
             "name": "generation",
@@ -1593,7 +1917,7 @@
         "modelEntity": null,
         "modelRecordset": null,
         "kind": "view",
-        "description": "",
+        "description": "Routes evaluated at the workspace business clock and current configuration; missing or ambiguous matches remain visible.",
         "columns": [
           {
             "name": "request_id",
@@ -1771,7 +2095,7 @@
         "modelEntity": null,
         "modelRecordset": null,
         "kind": "view",
-        "description": "",
+        "description": "The highest numbered recorded attempt for each request; it does not import future replay examples.",
         "columns": [
           {
             "name": "attempt_id",
